@@ -75,6 +75,16 @@ class API(
 
 
 
+
+
+    /* Docs */
+
+    suspend fun getDocsHtml(): String = get("docs").body()
+
+    suspend fun getDocsJson(): String = get("docs.json").body()
+
+
+
     /* Attachments */
 
     suspend fun getAttachments(): Attachments = get("attachments").body()

@@ -89,4 +89,24 @@ class API(
         return delete("attachments/$id").body()
     }
 
+
+
+    /* Pages */
+
+    suspend fun getPages(): Pages = get("pages").body()
+
+    //TODO: create page
+
+    suspend fun getPage(id: Int): FullPage = get("pages/$id").body()
+
+    //TODO: update page
+
+    suspend fun deletePage(id: Int): String {
+        return delete("pages/$id").body()
+    }
+
+    suspend fun exportPage(id: Int, format: ExportFormat): String {
+        return get("pages/$id/export/${format.value}").body()
+    }
+
 }

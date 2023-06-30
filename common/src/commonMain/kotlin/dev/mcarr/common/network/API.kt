@@ -73,4 +73,20 @@ class API(
     }
 
 
+
+
+    /* Attachments */
+
+    suspend fun getAttachments(): Attachments = get("attachments").body()
+
+    //TODO: create attachment
+
+    suspend fun getAttachment(id: Int): FullAttachment = get("attachments/$id").body()
+
+    //TODO: update attachment
+
+    suspend fun deleteAttachment(id: Int){
+        return delete("attachments/$id").body()
+    }
+
 }

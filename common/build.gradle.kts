@@ -39,6 +39,11 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
+                // ktor
+                implementation("io.ktor:ktor-client-mock:$ktorVersion")
             }
         }
         val androidMain by getting {

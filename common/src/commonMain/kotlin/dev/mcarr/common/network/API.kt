@@ -91,6 +91,24 @@ class API(
 
 
 
+    /* Books */
+
+    suspend fun getBooks(): Books = get("books").body()
+
+    //TODO: create books
+
+    suspend fun getBook(id: Int): FullBook = get("books/$id").body()
+
+    //TODO: update book
+
+    suspend fun deleteBook(id: Int): String {
+        return delete("books/$id").body()
+    }
+
+    suspend fun exportBook(id: Int, format: ExportFormat): String {
+        return get("books/$id/export/${format.value}").body()
+    }
+
 
 
     /* Chapters */

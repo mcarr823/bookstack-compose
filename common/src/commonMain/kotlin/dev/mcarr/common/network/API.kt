@@ -91,6 +91,28 @@ class API(
 
 
 
+
+
+    /* Chapters */
+
+    suspend fun getChapters(): Chapters = get("chapters").body()
+
+    //TODO: create chapter
+
+    suspend fun getChapter(id: Int): FullChapter = get("chapters/$id").body()
+
+    //TODO: update chapter
+
+    suspend fun deleteChapter(id: Int): String {
+        return delete("chapters/$id").body()
+    }
+
+    suspend fun exportChapter(id: Int, format: ExportFormat): String {
+        return get("chapter/$id/export/${format.value}").body()
+    }
+
+
+
     /* Pages */
 
     suspend fun getPages(): Pages = get("pages").body()

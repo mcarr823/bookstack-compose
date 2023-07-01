@@ -73,19 +73,9 @@ class ApiTest {
     fun testCreateBook(){
 
         runTest {
-            val book = CreateBookRequest(
-                name = "Test book",
-                description = "Test description"
-            )
-            val response = api.createBook(book)
-
-            val book2 = CreateBookRequest(
-                name = "Updated book",
-                description = "Updated description"
-            )
-            val response2 = api.updateBook(response.id, book2)
-
-            api.deleteBook(response.id)
+            val response = createBook()
+            val response2 = updateBook(response.id)
+            deleteBook(response.id)
         }
 
     }
@@ -135,6 +125,29 @@ class ApiTest {
                 println("Page export Markdown: $exportMarkdown")
             }
         }
+    }
+
+
+
+
+    private suspend fun createBook(): CreateBookResponse {
+        val book = CreateBookRequest(
+            name = "Test book",
+            description = "Test description"
+        )
+        return api.createBook(book)
+    }
+
+    private suspend fun updateBook(id: Int): CreateBookResponse {
+        val book2 = CreateBookRequest(
+            name = "Updated book",
+            description = "Updated description"
+        )
+        return api.updateBook(id, book2)
+    }
+
+    private suspend fun deleteBook(id: Int){
+        api.deleteBook(id)
     }
 
 }

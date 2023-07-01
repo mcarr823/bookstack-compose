@@ -64,3 +64,41 @@ data class FullChapter(
     @SerialName("pages")
     val pages: List<Page>
 )
+
+@Serializable
+data class CreateChapterRequest(
+    @SerialName("book_id")
+    val bookId: Int,
+    @SerialName("name")
+    val name: String, //max 255 chars
+    @SerialName("description")
+    val description: String, //max 1,000 chars
+    //TODO: tags
+): RequestBodyInterface
+
+@Serializable
+data class CreateChapterResponse(
+    @SerialName("id")
+    val id: Int,
+    @SerialName("book_id")
+    val bookId: Int,
+    @SerialName("priority")
+    val priority: Int,
+    @SerialName("name")
+    val name: String,
+    @SerialName("description")
+    val description: String,
+    @SerialName("slug")
+    val slug: String,
+    @SerialName("created_by")
+    val createdBy: Int,
+    @SerialName("updated_by")
+    val updatedBy: Int,
+    @SerialName("owned_by")
+    val ownedBy: Int,
+    @SerialName("created_at")
+    val createdAt: String, //2023-06-25T10:29:40.000000Z
+    @SerialName("updated_at")
+    val updatedAt: String, //2023-06-25T10:29:40.000000Z
+    //TODO: tags
+)

@@ -135,11 +135,13 @@ class API(
 
     suspend fun getChapters(): Chapters = get("chapters").body()
 
-    //TODO: create chapter
+    suspend fun createChapter(chapter: CreateChapterRequest): CreateChapterResponse =
+        post("chapters", chapter).body()
 
     suspend fun getChapter(id: Int): FullChapter = get("chapters/$id").body()
 
-    //TODO: update chapter
+    suspend fun updateChapter(id: Int, chapter: CreateChapterRequest): CreateChapterResponse =
+        put("chapters/$id", chapter).body()
 
     suspend fun deleteChapter(id: Int): Boolean = delete("chapters/$id")
 

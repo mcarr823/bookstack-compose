@@ -1,5 +1,4 @@
-import dev.mcarr.common.data.CreateBookRequest
-import dev.mcarr.common.data.ExportFormat
+import dev.mcarr.common.data.*
 import dev.mcarr.common.network.API
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
@@ -106,6 +105,21 @@ class ApiTest {
     }
 
     @Test
+    fun testCreateChapter(){
+
+        runTest {
+            val book = createBook()
+            val ch = createChapter(book.id)
+
+            val ch2 = updateChapter(book.id, ch.id)
+
+            deleteChapter(ch.id)
+            deleteBook(book.id)
+        }
+
+    }
+
+    @Test
     fun testPages(){
 
         runTest {
@@ -130,6 +144,8 @@ class ApiTest {
 
 
 
+    /* Book functions */
+
     private suspend fun createBook(): CreateBookResponse {
         val book = CreateBookRequest(
             name = "Test book",
@@ -148,6 +164,31 @@ class ApiTest {
 
     private suspend fun deleteBook(id: Int){
         api.deleteBook(id)
+    }
+
+
+    /* Chapter functions */
+
+    private suspend fun createChapter(bookId: Int): CreateChapterResponse {
+        val ch = CreateChapterRequest(
+            bookId = bookId,
+            name = "Test book",
+            description = "Test description"
+        )
+        return api.createChapter(ch)
+    }
+
+    private suspend fun updateChapter(bookId: Int, chapterId: Int): CreateChapterResponse {
+        val ch2 = CreateChapterRequest(
+            bookId = bookId,
+            name = "Updated book",
+            description = "Updated description"
+        )
+        return api.updateChapter(chapterId, ch2)
+    }
+
+    private suspend fun deleteChapter(chapterId: Int){
+        api.deleteChapter(chapterId)
     }
 
 }

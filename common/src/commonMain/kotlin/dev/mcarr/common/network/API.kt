@@ -44,11 +44,14 @@ class API(
         }
     }
 
-    private suspend fun get(path: String): HttpResponse {
-        val httpResponse = httpClient.get("$apiUrl/api/$path"){
+    private suspend fun performRequest(method: HttpMethod, path: String, body: RequestBodyInterface?): HttpResponse {
+        val httpResponse = httpClient.request("$apiUrl/api/$path"){
+            this.method = method
             headers {
                 append(HttpHeaders.Authorization, "Token $tokenId:$tokenSecret")
+                if (body != null) append(HttpHeaders.ContentType, ContentType.Application.Json)
             }
+            if (body != null) setBody(body)
         }
         if (httpResponse.status.value in 200..299) {
             if (testing) {
@@ -64,13 +67,22 @@ class API(
         }
     }
 
-    private suspend fun delete(path: String): HttpResponse {
-        return httpClient.delete("$apiUrl/api/$path"){
-            headers {
-                append(HttpHeaders.Authorization, "Token $tokenId:$tokenSecret")
-            }
+    private suspend fun get(path: String): HttpResponse =
+        performRequest(HttpMethod.Get, path, null)
+
+    private suspend fun post(path: String, body: RequestBodyInterface): HttpResponse =
+        performRequest(HttpMethod.Post, path, body)
+
+    private suspend fun put(path: String, body: RequestBodyInterface): HttpResponse =
+        performRequest(HttpMethod.Put, path, body)
+
+    private suspend fun delete(path: String): Boolean =
+        try{
+            performRequest(HttpMethod.Delete, path, null)
+            true
+        }catch (e: Exception){
+            throw e
         }
-    }
 
 
 
@@ -95,9 +107,7 @@ class API(
 
     //TODO: update attachment
 
-    suspend fun deleteAttachment(id: Int){
-        return delete("attachments/$id").body()
-    }
+    suspend fun deleteAttachment(id: Int): Boolean = delete("attachments/$id")
 
 
 
@@ -111,9 +121,7 @@ class API(
 
     //TODO: update book
 
-    suspend fun deleteBook(id: Int): String {
-        return delete("books/$id").body()
-    }
+    suspend fun deleteBook(id: Int): Boolean = delete("books/$id")
 
     suspend fun exportBook(id: Int, format: ExportFormat): String {
         return get("books/$id/export/${format.value}").body()
@@ -131,9 +139,7 @@ class API(
 
     //TODO: update chapter
 
-    suspend fun deleteChapter(id: Int): String {
-        return delete("chapters/$id").body()
-    }
+    suspend fun deleteChapter(id: Int): Boolean = delete("chapters/$id")
 
     suspend fun exportChapter(id: Int, format: ExportFormat): String {
         return get("chapter/$id/export/${format.value}").body()
@@ -151,9 +157,7 @@ class API(
 
     //TODO: update page
 
-    suspend fun deletePage(id: Int): String {
-        return delete("pages/$id").body()
-    }
+    suspend fun deletePage(id: Int): Boolean = delete("pages/$id")
 
     suspend fun exportPage(id: Int, format: ExportFormat): String {
         return get("pages/$id/export/${format.value}").body()

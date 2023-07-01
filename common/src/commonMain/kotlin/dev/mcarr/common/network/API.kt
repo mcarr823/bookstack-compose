@@ -115,11 +115,13 @@ class API(
 
     suspend fun getBooks(): Books = get("books").body()
 
-    //TODO: create books
+    suspend fun createBook(book: CreateBookRequest): CreateBookResponse =
+        post("books", book).body()
 
     suspend fun getBook(id: Int): FullBook = get("books/$id").body()
 
-    //TODO: update book
+    suspend fun updateBook(id: Int, book: CreateBookRequest): CreateBookResponse =
+        put("books/$id", book).body()
 
     suspend fun deleteBook(id: Int): Boolean = delete("books/$id")
 

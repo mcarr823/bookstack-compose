@@ -1,3 +1,4 @@
+import dev.mcarr.common.data.CreateBookRequest
 import dev.mcarr.common.data.ExportFormat
 import dev.mcarr.common.network.API
 import kotlinx.coroutines.runBlocking
@@ -64,6 +65,27 @@ class ApiTest {
                 val exportMarkdown = api.exportBook(it.id, ExportFormat.MARK_DOWN)
                 println("Book export Markdown: $exportMarkdown")
             }
+        }
+
+    }
+
+    @Test
+    fun testCreateBook(){
+
+        runTest {
+            val book = CreateBookRequest(
+                name = "Test book",
+                description = "Test description"
+            )
+            val response = api.createBook(book)
+
+            val book2 = CreateBookRequest(
+                name = "Updated book",
+                description = "Updated description"
+            )
+            val response2 = api.updateBook(response.id, book2)
+
+            api.deleteBook(response.id)
         }
 
     }

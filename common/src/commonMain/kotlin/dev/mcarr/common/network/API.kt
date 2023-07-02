@@ -53,14 +53,14 @@ class API(
             }
             if (body != null) setBody(body)
         }
-        if (httpResponse.status.value in 200..299) {
-            if (testing) {
-                try {
-                    println(httpResponse.bodyAsText())
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+        if (testing) {
+            try {
+                println(httpResponse.bodyAsText())
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
+        }
+        if (httpResponse.status.value in 200..299) {
             return httpResponse
         }else{
             throw Exception() //TODO: parse error message

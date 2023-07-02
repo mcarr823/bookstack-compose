@@ -141,6 +141,23 @@ class ApiTest {
         }
     }
 
+    @Test
+    fun testCreatePage(){
+
+        runTest {
+            val book = createBook()
+            val ch = createChapter(book.id)
+            val page = createPage(ch.id)
+
+            val page2 = updatePage(ch.id, page.id)
+
+            deletePage(page.id)
+            deleteChapter(ch.id)
+            deleteBook(book.id)
+        }
+
+    }
+
 
 
 
@@ -189,6 +206,31 @@ class ApiTest {
 
     private suspend fun deleteChapter(chapterId: Int){
         api.deleteChapter(chapterId)
+    }
+
+
+    /* Page functions */
+
+    private suspend fun createPage(chapterId: Int): CreatePageResponse {
+        val page = CreatePageRequestChapterHtml(
+            chapterId = chapterId,
+            name = "Test page",
+            html = "<p>Test html</p>"
+        )
+        return api.createPage(page)
+    }
+
+    private suspend fun updatePage(chapterId: Int, pageId: Int): CreatePageResponse {
+        val page = CreatePageRequestChapterHtml(
+            chapterId = chapterId,
+            name = "Updated page",
+            html = "<p>Updated html</p>",
+        )
+        return api.updatePage(pageId, page)
+    }
+
+    private suspend fun deletePage(pageId: Int){
+        api.deletePage(pageId)
     }
 
 }

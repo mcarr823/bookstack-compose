@@ -155,11 +155,13 @@ class API(
 
     suspend fun getPages(): Pages = get("pages").body()
 
-    //TODO: create page
+    suspend fun createPage(page: CreatePageRequest): CreatePageResponse =
+        post("pages", page).body()
 
     suspend fun getPage(id: Int): FullPage = get("pages/$id").body()
 
-    //TODO: update page
+    suspend fun updatePage(id: Int, page: CreatePageRequest): CreatePageResponse =
+        put("pages/$id", page).body()
 
     suspend fun deletePage(id: Int): Boolean = delete("pages/$id")
 

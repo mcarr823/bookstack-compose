@@ -146,7 +146,7 @@ class API(
     suspend fun deleteChapter(id: Int): Boolean = delete("chapters/$id")
 
     suspend fun exportChapter(id: Int, format: ExportFormat): String {
-        return get("chapter/$id/export/${format.value}").body()
+        return get("chapters/$id/export/${format.value}").body()
     }
 
 

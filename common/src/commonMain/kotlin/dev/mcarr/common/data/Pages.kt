@@ -1,5 +1,6 @@
 package dev.mcarr.common.data
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -30,9 +31,9 @@ data class Page(
     @SerialName("template")
     val template: Boolean,
     @SerialName("created_at")
-    val createdAt: String, //2023-06-25T10:29:40.000000Z
+    val createdAt: Instant,
     @SerialName("updated_at")
-    val updatedAt: String, //2023-06-25T10:29:40.000000Z
+    val updatedAt: Instant,
     @SerialName("url")
     val url: String = "",
     @SerialName("created_by")
@@ -60,9 +61,9 @@ data class FullPage(
     @SerialName("template")
     val template: Boolean,
     @SerialName("created_at")
-    val createdAt: String, //2023-06-25T10:29:40.000000Z
+    val createdAt: Instant,
     @SerialName("updated_at")
-    val updatedAt: String, //2023-06-25T10:29:40.000000Z
+    val updatedAt: Instant,
     @SerialName("created_by")
     val createdBy: Author,
     @SerialName("updated_by")
@@ -158,9 +159,9 @@ data class CreatePageResponse(
     @SerialName("owned_by")
     val ownedBy: Author,
     @SerialName("created_at")
-    val createdAt: String, //2023-06-25T10:29:40.000000Z
+    val createdAt: Instant,
     @SerialName("updated_at")
-    val updatedAt: String, //2023-06-25T10:29:40.000000Z
+    val updatedAt: Instant,
     @SerialName("draft")
     val draft: Boolean,
     @SerialName("template")

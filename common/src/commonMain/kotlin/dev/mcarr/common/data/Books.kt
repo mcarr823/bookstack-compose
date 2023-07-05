@@ -1,5 +1,6 @@
 package dev.mcarr.common.data
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -22,9 +23,9 @@ data class Book(
     @SerialName("description")
     val description: String,
     @SerialName("created_at")
-    val createdAt: String, //2023-06-25T10:29:40.000000Z
+    val createdAt: Instant,
     @SerialName("updated_at")
-    val updatedAt: String, //2023-06-25T10:29:40.000000Z
+    val updatedAt: Instant,
     @SerialName("created_by")
     val createdBy: Int,
     @SerialName("updated_by")
@@ -44,9 +45,9 @@ data class FullBook(
     @SerialName("description")
     val description: String,
     @SerialName("created_at")
-    val createdAt: String, //2023-06-25T10:29:40.000000Z
+    val createdAt: Instant,
     @SerialName("updated_at")
-    val updatedAt: String, //2023-06-25T10:29:40.000000Z
+    val updatedAt: Instant,
     @SerialName("created_by")
     val createdBy: Author,
     @SerialName("updated_by")
@@ -72,9 +73,9 @@ data class BookContent(
     @SerialName("book_id")
     val bookId: Int,
     @SerialName("created_at")
-    val createdAt: String, //2023-06-25T10:29:40.000000Z
+    val createdAt: Instant,
     @SerialName("updated_at")
-    val updatedAt: String, //2023-06-25T10:29:40.000000Z
+    val updatedAt: Instant,
     @SerialName("url")
     val url: String,
     @SerialName("type")
@@ -92,9 +93,9 @@ data class BookCover(
     @SerialName("url")
     val url: String,
     @SerialName("created_at")
-    val createdAt: String, //2023-06-25T10:29:40.000000Z
+    val createdAt: Instant,
     @SerialName("updated_at")
-    val updatedAt: String, //2023-06-25T10:29:40.000000Z
+    val updatedAt: Instant,
     @SerialName("created_by")
     val createdBy: Int,
     @SerialName("updated_by")
@@ -134,7 +135,7 @@ data class CreateBookResponse(
     @SerialName("owned_by")
     val ownedBy: Int,
     @SerialName("created_at")
-    val createdAt: String, //2023-06-25T10:29:40.000000Z
+    val createdAt: Instant,
     @SerialName("updated_at")
-    val updatedAt: String, //2023-06-25T10:29:40.000000Z
+    val updatedAt: Instant,
 )

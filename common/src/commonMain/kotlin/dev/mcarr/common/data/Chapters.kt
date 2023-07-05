@@ -1,5 +1,6 @@
 package dev.mcarr.common.data
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -26,9 +27,9 @@ data class Chapter(
     @SerialName("priority")
     val priority: Int,
     @SerialName("created_at")
-    val createdAt: String, //2023-06-25T10:29:40.000000Z
+    val createdAt: Instant,
     @SerialName("updated_at")
-    val updatedAt: String, //2023-06-25T10:29:40.000000Z
+    val updatedAt: Instant,
     @SerialName("created_by")
     val createdBy: Int,
     @SerialName("updated_by")
@@ -50,9 +51,9 @@ data class FullChapter(
     @SerialName("priority")
     val priority: Int,
     @SerialName("created_at")
-    val createdAt: String, //2023-06-25T10:29:40.000000Z
+    val createdAt: Instant,
     @SerialName("updated_at")
-    val updatedAt: String, //2023-06-25T10:29:40.000000Z
+    val updatedAt: Instant,
     @SerialName("created_by")
     val createdBy: Author,
     @SerialName("updated_by")
@@ -97,8 +98,8 @@ data class CreateChapterResponse(
     @SerialName("owned_by")
     val ownedBy: Int,
     @SerialName("created_at")
-    val createdAt: String, //2023-06-25T10:29:40.000000Z
+    val createdAt: Instant,
     @SerialName("updated_at")
-    val updatedAt: String, //2023-06-25T10:29:40.000000Z
+    val updatedAt: Instant,
     //TODO: tags
 )

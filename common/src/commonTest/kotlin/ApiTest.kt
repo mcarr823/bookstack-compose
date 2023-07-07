@@ -212,7 +212,7 @@ class ApiTest {
     /* Page functions */
 
     private suspend fun createPage(chapterId: Int): CreatePageResponse {
-        val page = CreatePageRequestChapterHtml(
+        val page = CreatePageRequest(
             chapterId = chapterId,
             name = "Test page",
             html = "<p>Test html</p>"
@@ -221,10 +221,10 @@ class ApiTest {
     }
 
     private suspend fun updatePage(chapterId: Int, pageId: Int): CreatePageResponse {
-        val page = CreatePageRequestChapterHtml(
+        val page = CreatePageRequest(
             chapterId = chapterId,
             name = "Updated page",
-            html = "<p>Updated html</p>",
+            html = "<p>Updated html</p>"
         )
         return api.updatePage(pageId, page)
     }

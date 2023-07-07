@@ -39,7 +39,6 @@ class API(
             json(Json {
                 ignoreUnknownKeys = true
                 useAlternativeNames = false
-                encodeDefaults = true
             })
         }
     }

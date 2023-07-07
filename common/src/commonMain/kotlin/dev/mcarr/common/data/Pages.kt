@@ -85,52 +85,21 @@ data class FullPage(
 /**
  * Must specify bookId OR chapterId.
  * Also, must specify html OR markdown.
- *
- * For now we're using an interface with 4 different data classes.
- * TODO: look into alternatives like polymorphism in serialization
  **/
 @Serializable
-sealed interface CreatePageRequest: RequestBodyInterface
-@Serializable
-data class CreatePageRequestBookHtml(
+data class CreatePageRequest(
     @SerialName("book_id")
-    val bookId: Int,
+    val bookId: Int? = null,
+    @SerialName("chapter_id")
+    val chapterId: Int? = null,
     @SerialName("name")
     val name: String, //max 255 chars
     @SerialName("html")
-    val html: String,
-    //TODO: tags
-): CreatePageRequest
-@Serializable
-data class CreatePageRequestBookMarkdown(
-    @SerialName("book_id")
-    val bookId: Int,
-    @SerialName("name")
-    val name: String, //max 255 chars
+    val html: String? = null,
     @SerialName("markdown")
-    val markdown: String,
+    val markdown: String? = null,
     //TODO: tags
-): CreatePageRequest
-@Serializable
-data class CreatePageRequestChapterHtml(
-    @SerialName("chapter_id")
-    val chapterId: Int,
-    @SerialName("name")
-    val name: String, //max 255 chars
-    @SerialName("html")
-    val html: String,
-    //TODO: tags
-): CreatePageRequest
-@Serializable
-data class CreatePageRequestChapterMarkdown(
-    @SerialName("chapter_id")
-    val chapterId: Int,
-    @SerialName("name")
-    val name: String, //max 255 chars
-    @SerialName("markdown")
-    val markdown: String,
-    //TODO: tags
-): CreatePageRequest
+)
 
 @Serializable
 data class CreatePageResponse(

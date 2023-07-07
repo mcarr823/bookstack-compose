@@ -19,7 +19,7 @@ version = "1.0-SNAPSHOT"
 kotlin {
     android()
     jvm("desktop") {
-        jvmToolchain(11)
+        jvmToolchain(17)
     }
     sourceSets {
         val commonMain by getting {
@@ -75,7 +75,7 @@ android {
         targetSdkVersion(33)
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }

@@ -44,14 +44,14 @@ class API(
         }
     }
 
-    private suspend fun performRequest(method: HttpMethod, path: String, body: RequestBodyInterface?): HttpResponse {
+    private suspend fun performRequest(method: HttpMethod, path: String, setBodyCallback: HttpRequestBuilder.() -> Unit): HttpResponse {
         val httpResponse = httpClient.request("$apiUrl/api/$path"){
             this.method = method
             headers {
                 append(HttpHeaders.Authorization, "Token $tokenId:$tokenSecret")
-                if (body != null) append(HttpHeaders.ContentType, ContentType.Application.Json)
+                append(HttpHeaders.ContentType, ContentType.Application.Json)
             }
-            if (body != null) setBody(body)
+            this.setBodyCallback()
         }
         if (testing) {
             try {
@@ -68,17 +68,17 @@ class API(
     }
 
     private suspend fun get(path: String): HttpResponse =
-        performRequest(HttpMethod.Get, path, null)
+        performRequest(HttpMethod.Get, path){}
 
-    private suspend fun post(path: String, body: RequestBodyInterface): HttpResponse =
-        performRequest(HttpMethod.Post, path, body)
+    private suspend fun post(path: String, setBodyCallback: HttpRequestBuilder.() -> Unit): HttpResponse =
+        performRequest(HttpMethod.Post, path, setBodyCallback)
 
-    private suspend fun put(path: String, body: RequestBodyInterface): HttpResponse =
-        performRequest(HttpMethod.Put, path, body)
+    private suspend fun put(path: String, setBodyCallback: HttpRequestBuilder.() -> Unit): HttpResponse =
+        performRequest(HttpMethod.Put, path, setBodyCallback)
 
     private suspend fun delete(path: String): Boolean =
         try{
-            performRequest(HttpMethod.Delete, path, null)
+            performRequest(HttpMethod.Delete, path){}
             true
         }catch (e: Exception){
             throw e
@@ -116,12 +116,16 @@ class API(
     suspend fun getBooks(): Books = get("books").body()
 
     suspend fun createBook(book: CreateBookRequest): CreateBookResponse =
-        post("books", book).body()
+        post("books") {
+            setBody(book)
+        }.body()
 
     suspend fun getBook(id: Int): FullBook = get("books/$id").body()
 
     suspend fun updateBook(id: Int, book: CreateBookRequest): CreateBookResponse =
-        put("books/$id", book).body()
+        put("books/$id"){
+            setBody(book)
+        }.body()
 
     suspend fun deleteBook(id: Int): Boolean = delete("books/$id")
 
@@ -136,12 +140,16 @@ class API(
     suspend fun getChapters(): Chapters = get("chapters").body()
 
     suspend fun createChapter(chapter: CreateChapterRequest): CreateChapterResponse =
-        post("chapters", chapter).body()
+        post("chapters"){
+            setBody(chapter)
+        }.body()
 
     suspend fun getChapter(id: Int): FullChapter = get("chapters/$id").body()
 
     suspend fun updateChapter(id: Int, chapter: CreateChapterRequest): CreateChapterResponse =
-        put("chapters/$id", chapter).body()
+        put("chapters/$id"){
+            setBody(chapter)
+        }.body()
 
     suspend fun deleteChapter(id: Int): Boolean = delete("chapters/$id")
 
@@ -156,12 +164,16 @@ class API(
     suspend fun getPages(): Pages = get("pages").body()
 
     suspend fun createPage(page: CreatePageRequest): CreatePageResponse =
-        post("pages", page).body()
+        post("pages"){
+            setBody(page)
+        }.body()
 
     suspend fun getPage(id: Int): FullPage = get("pages/$id").body()
 
     suspend fun updatePage(id: Int, page: CreatePageRequest): CreatePageResponse =
-        put("pages/$id", page).body()
+        put("pages/$id"){
+            setBody(page)
+        }.body()
 
     suspend fun deletePage(id: Int): Boolean = delete("pages/$id")
 

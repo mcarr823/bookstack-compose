@@ -75,7 +75,7 @@ data class CreateChapterRequest(
     @SerialName("description")
     val description: String, //max 1,000 chars
     //TODO: tags
-): RequestBodyInterface
+)
 
 @Serializable
 data class CreateChapterResponse(

@@ -116,7 +116,7 @@ data class CreateBookRequest(
     val description: String, //max 1,000 chars
     //TODO: tags
     //TODO: image
-): RequestBodyInterface
+)
 
 @Serializable
 data class CreateBookResponse(

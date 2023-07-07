@@ -1,9 +1,7 @@
 package dev.mcarr.common.ui.screens
 
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
@@ -75,15 +73,3 @@ fun BookNew(
 
 }
 
-@Composable
-@Preview
-fun PreviewBookNew(){
-    Surface {
-        BookNew(
-            bookId = null,
-            defaultName = "",
-            defaultDescription = "",
-            submit = {_, _, _ ->}
-        )
-    }
-}

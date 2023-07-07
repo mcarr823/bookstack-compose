@@ -18,11 +18,11 @@ fun PreviewBookView(){
                     name = "Book Title",
                     slug = "",
                     description = "This is an example book description",
-                    createdAt = Clock.System.now(),
-                    createdBy = 0,
-                    updatedAt = Clock.System.now(),
-                    updatedBy = 0,
-                    ownedBy = 0
+                    created_at = Clock.System.now(),
+                    created_by = 0,
+                    updated_at = Clock.System.now(),
+                    updated_by = 0,
+                    owned_by = 0
                 ),
                 onTap = {}
             )

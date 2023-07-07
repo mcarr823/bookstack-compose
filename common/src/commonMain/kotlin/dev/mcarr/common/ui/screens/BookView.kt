@@ -20,7 +20,7 @@ fun BookView(
     onTap: (book: Book) -> Unit
 ){
 
-    val updatedAt = book.updatedAt.toLocalDateTime(TimeZone.UTC)
+    val updatedAt = book.updated_at.toLocalDateTime(TimeZone.UTC)
     val lastUpdated = "Last updated: %d:%02d, %d %s %04d".format(
         updatedAt.hour,
         updatedAt.minute,

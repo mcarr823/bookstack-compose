@@ -188,7 +188,7 @@ class ApiTest {
 
     private suspend fun createChapter(bookId: Int): CreateChapterResponse {
         val ch = CreateChapterRequest(
-            bookId = bookId,
+            book_id = bookId,
             name = "Test book",
             description = "Test description"
         )
@@ -197,7 +197,7 @@ class ApiTest {
 
     private suspend fun updateChapter(bookId: Int, chapterId: Int): CreateChapterResponse {
         val ch2 = CreateChapterRequest(
-            bookId = bookId,
+            book_id = bookId,
             name = "Updated book",
             description = "Updated description"
         )
@@ -213,7 +213,7 @@ class ApiTest {
 
     private suspend fun createPage(chapterId: Int): CreatePageResponse {
         val page = CreatePageRequest(
-            chapterId = chapterId,
+            chapter_id = chapterId,
             name = "Test page",
             html = "<p>Test html</p>"
         )
@@ -222,7 +222,7 @@ class ApiTest {
 
     private suspend fun updatePage(chapterId: Int, pageId: Int): CreatePageResponse {
         val page = CreatePageRequest(
-            chapterId = chapterId,
+            chapter_id = chapterId,
             name = "Updated page",
             html = "<p>Updated html</p>"
         )

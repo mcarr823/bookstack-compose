@@ -1,66 +1,41 @@
 package dev.mcarr.common.data
 
 import kotlinx.datetime.Instant
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Attachments(
-    @SerialName("data")
     override val data: List<Attachment>,
-    @SerialName("total")
     override val total: Int
 ) : BookstackResponse<Attachment>
 
 @Serializable
 data class Attachment(
-    @SerialName("id")
     val id: Int,
-    @SerialName("name")
     val name: String,
-    @SerialName("extension")
     val extension: String,
-    @SerialName("uploaded_to")
-    val uploadedTo: Int,
-    @SerialName("external")
+    val uploaded_to: Int,
     val external: Boolean,
-    @SerialName("order")
     val order: Int,
-    @SerialName("created_at")
-    val createdAt: Instant,
-    @SerialName("updated_at")
-    val updatedAt: Instant,
-    @SerialName("created_by")
-    val createdBy: Int,
-    @SerialName("updated_by")
-    val updatedBy: Int
+    val created_at: Instant,
+    val updated_at: Instant,
+    val created_by: Int,
+    val updated_by: Int
 )
 
 @Serializable
 data class FullAttachment(
-    @SerialName("id")
     val id: Int,
-    @SerialName("name")
     val name: String,
-    @SerialName("extension")
     val extension: String,
-    @SerialName("uploaded_to")
-    val uploadedTo: Int,
-    @SerialName("external")
+    val uploaded_to: Int,
     val external: Boolean,
-    @SerialName("order")
     val order: Int,
-    @SerialName("created_at")
-    val createdAt: Instant,
-    @SerialName("updated_at")
-    val updatedAt: Instant,
-    @SerialName("created_by")
-    val createdBy: Author,
-    @SerialName("updated_by")
-    val updatedBy: Author,
-    @SerialName("links")
+    val created_at: Instant,
+    val updated_at: Instant,
+    val created_by: Author,
+    val updated_by: Author,
     val links: Links,
-    @SerialName("content")
     val content: String,
 )
 

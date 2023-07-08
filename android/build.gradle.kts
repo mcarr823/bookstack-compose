@@ -14,6 +14,9 @@ repositories {
 dependencies {
     implementation(project(":common"))
     implementation("androidx.activity:activity-compose:1.5.0")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.1.1")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.1.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
 }
 
 android {
@@ -33,5 +36,8 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
+    }
+    buildFeatures {
+        compose = true
     }
 }

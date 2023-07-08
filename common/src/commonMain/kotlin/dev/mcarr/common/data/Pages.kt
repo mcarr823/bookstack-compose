@@ -1,5 +1,7 @@
 package dev.mcarr.common.data
 
+import dev.mcarr.common.data.interfaces.FullPageInterface
+import dev.mcarr.common.data.interfaces.PageInterface
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
@@ -11,42 +13,42 @@ data class Pages(
 
 @Serializable
 data class Page(
-    val id: Int,
-    val name: String,
-    val slug: String,
-    val priority: Int = -1,
-    val book_id: Int,
-    val chapter_id: Int,
-    val draft: Boolean,
-    val template: Boolean,
-    val created_at: Instant,
-    val updated_at: Instant,
-    val url: String = "",
-    val created_by: Int = -1,
-    val updated_by: Int = -1,
-    val owned_by: Int = -1,
-)
+    override val id: Int,
+    override val name: String,
+    override val slug: String,
+    override val priority: Int = -1,
+    override val book_id: Int,
+    override val chapter_id: Int,
+    override val draft: Boolean,
+    override val template: Boolean,
+    override val created_at: Instant,
+    override val updated_at: Instant,
+    override val url: String = "",
+    override val created_by: Int = -1,
+    override val updated_by: Int = -1,
+    override val owned_by: Int = -1,
+) : PageInterface
 
 @Serializable
 data class FullPage(
-    val id: Int,
-    val name: String,
-    val slug: String,
-    val book_id: Int,
-    val chapter_id: Int,
-    val draft: Boolean,
-    val template: Boolean,
-    val created_at: Instant,
-    val updated_at: Instant,
-    val created_by: Author,
-    val updated_by: Author,
-    val owned_by: Author,
-    val tags: List<Tag>,
-    val priority: Int,
-    val revision_count: Int,
-    val html: String,
-    val markdown: String,
-)
+    override val id: Int,
+    override val name: String,
+    override val slug: String,
+    override val book_id: Int,
+    override val chapter_id: Int,
+    override val draft: Boolean,
+    override val template: Boolean,
+    override val created_at: Instant,
+    override val updated_at: Instant,
+    override val created_by: Author,
+    override val updated_by: Author,
+    override val owned_by: Author,
+    override val tags: List<Tag>,
+    override val priority: Int,
+    override val revision_count: Int,
+    override val html: String,
+    override val markdown: String,
+) : FullPageInterface
 
 /**
  * Must specify bookId OR chapterId.

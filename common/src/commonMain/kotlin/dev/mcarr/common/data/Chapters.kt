@@ -1,5 +1,7 @@
 package dev.mcarr.common.data
 
+import dev.mcarr.common.data.interfaces.ChapterInterface
+import dev.mcarr.common.data.interfaces.FullChapterInterface
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
@@ -11,34 +13,34 @@ data class Chapters(
 
 @Serializable
 data class Chapter(
-    val id: Int,
-    val book_id: Int,
-    val name: String,
-    val slug: String,
-    val description: String,
-    val priority: Int,
-    val created_at: Instant,
-    val updated_at: Instant,
-    val created_by: Int,
-    val updated_by: Int
-)
+    override val id: Int,
+    override val book_id: Int,
+    override val name: String,
+    override val slug: String,
+    override val description: String,
+    override val priority: Int,
+    override val created_at: Instant,
+    override val updated_at: Instant,
+    override val created_by: Int,
+    override val updated_by: Int
+) : ChapterInterface
 
 @Serializable
 data class FullChapter(
-    val id: Int,
-    val book_id: Int,
-    val name: String,
-    val slug: String,
-    val description: String,
-    val priority: Int,
-    val created_at: Instant,
-    val updated_at: Instant,
-    val created_by: Author,
-    val updated_by: Author,
-    val owned_by: Author,
-    val tags: List<Tag>,
-    val pages: List<Page>
-)
+    override val id: Int,
+    override val book_id: Int,
+    override val name: String,
+    override val slug: String,
+    override val description: String,
+    override val priority: Int,
+    override val created_at: Instant,
+    override val updated_at: Instant,
+    override val created_by: Author,
+    override val updated_by: Author,
+    override val owned_by: Author,
+    override val tags: List<Tag>,
+    override val pages: List<Page>
+) : FullChapterInterface
 
 @Serializable
 data class CreateChapterRequest(

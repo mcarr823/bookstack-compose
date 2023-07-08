@@ -1,5 +1,7 @@
 package dev.mcarr.common.data
 
+import dev.mcarr.common.data.interfaces.BookInterface
+import dev.mcarr.common.data.interfaces.FullBookInterface
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
@@ -11,32 +13,32 @@ data class Books(
 
 @Serializable
 data class Book(
-    val id: Int,
-    val name: String,
-    val slug: String,
-    val description: String,
-    val created_at: Instant,
-    val updated_at: Instant,
-    val created_by: Int,
-    val updated_by: Int,
-    val owned_by: Int
-)
+    override val id: Int,
+    override val name: String,
+    override val slug: String,
+    override val description: String,
+    override val created_at: Instant,
+    override val updated_at: Instant,
+    override val created_by: Int,
+    override val updated_by: Int,
+    override val owned_by: Int
+) : BookInterface
 
 @Serializable
 data class FullBook(
-    val id: Int,
-    val name: String,
-    val slug: String,
-    val description: String,
-    val created_at: Instant,
-    val updated_at: Instant,
-    val created_by: Author,
-    val updated_by: Author,
-    val owned_by: Author,
-    val contents: List<BookContent>,
-    val tags: List<Tag>,
-    val cover: BookCover?
-)
+    override val id: Int,
+    override val name: String,
+    override val slug: String,
+    override val description: String,
+    override val created_at: Instant,
+    override val updated_at: Instant,
+    override val created_by: Author,
+    override val updated_by: Author,
+    override val owned_by: Author,
+    override val contents: List<BookContent>,
+    override val tags: List<Tag>,
+    override val cover: BookCover?
+): FullBookInterface
 
 @Serializable
 data class BookContent(

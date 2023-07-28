@@ -5,7 +5,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import dev.mcarr.common.data.fake.FakeAppDatabase
-import dev.mcarr.common.ui.screens.BookListItemView
 import kotlinx.coroutines.runBlocking
 
 @Preview

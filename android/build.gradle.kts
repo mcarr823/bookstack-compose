@@ -2,6 +2,8 @@ plugins {
     id("org.jetbrains.compose")
     id("com.android.application")
     kotlin("android")
+    id("kotlin-parcelize")
+
 }
 
 group = "dev.mcarr"
@@ -20,6 +22,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
+    implementation("com.arkivanov.decompose:decompose:2.0.0")
+    implementation("com.arkivanov.decompose:extensions-compose-jetpack:2.0.0")
 
 }
 

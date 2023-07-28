@@ -1,9 +1,9 @@
-package dev.mcarr.android.ui.screens
+package dev.mcarr.common.ui.components
 
+import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import dev.mcarr.common.data.fake.FakeAppDatabase
 import dev.mcarr.common.ui.screens.BookListItemView
 import kotlinx.coroutines.runBlocking

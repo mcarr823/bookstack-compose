@@ -19,7 +19,7 @@ class API(
     val tokenSecret: String,
     val disableHttpsVerification: Boolean = false,
     val testing: Boolean = false
-) {
+) : ApiInterface {
 
     private val httpClient = HttpClient(CIO) {
         if (testing) {
@@ -90,45 +90,45 @@ class API(
 
     /* Docs */
 
-    suspend fun getDocsHtml(): String = get("docs").body()
+    override suspend fun getDocsHtml(): String = get("docs").body()
 
-    suspend fun getDocsJson(): String = get("docs.json").body()
+    override suspend fun getDocsJson(): String = get("docs.json").body()
 
 
 
     /* Attachments */
 
-    suspend fun getAttachments(): Attachments = get("attachments").body()
+    override suspend fun getAttachments(): Attachments = get("attachments").body()
 
     //TODO: create attachment
 
-    suspend fun getAttachment(id: Int): FullAttachment = get("attachments/$id").body()
+    override suspend fun getAttachment(id: Int): FullAttachment = get("attachments/$id").body()
 
     //TODO: update attachment
 
-    suspend fun deleteAttachment(id: Int): Boolean = delete("attachments/$id")
+    override suspend fun deleteAttachment(id: Int): Boolean = delete("attachments/$id")
 
 
 
     /* Books */
 
-    suspend fun getBooks(): Books = get("books").body()
+    override suspend fun getBooks(): Books = get("books").body()
 
-    suspend fun createBook(book: CreateBookRequest): CreateBookResponse =
+    override suspend fun createBook(book: CreateBookRequest): CreateBookResponse =
         post("books") {
             setBody(book)
         }.body()
 
-    suspend fun getBook(id: Int): FullBook = get("books/$id").body()
+    override suspend fun getBook(id: Int): FullBook = get("books/$id").body()
 
-    suspend fun updateBook(id: Int, book: CreateBookRequest): CreateBookResponse =
+    override suspend fun updateBook(id: Int, book: CreateBookRequest): CreateBookResponse =
         put("books/$id"){
             setBody(book)
         }.body()
 
-    suspend fun deleteBook(id: Int): Boolean = delete("books/$id")
+    override suspend fun deleteBook(id: Int): Boolean = delete("books/$id")
 
-    suspend fun exportBook(id: Int, format: ExportFormat): String {
+    override suspend fun exportBook(id: Int, format: ExportFormat): String {
         return get("books/$id/export/${format.value}").body()
     }
 
@@ -136,23 +136,23 @@ class API(
 
     /* Chapters */
 
-    suspend fun getChapters(): Chapters = get("chapters").body()
+    override suspend fun getChapters(): Chapters = get("chapters").body()
 
-    suspend fun createChapter(chapter: CreateChapterRequest): CreateChapterResponse =
+    override suspend fun createChapter(chapter: CreateChapterRequest): CreateChapterResponse =
         post("chapters"){
             setBody(chapter)
         }.body()
 
-    suspend fun getChapter(id: Int): FullChapter = get("chapters/$id").body()
+    override suspend fun getChapter(id: Int): FullChapter = get("chapters/$id").body()
 
-    suspend fun updateChapter(id: Int, chapter: CreateChapterRequest): CreateChapterResponse =
+    override suspend fun updateChapter(id: Int, chapter: CreateChapterRequest): CreateChapterResponse =
         put("chapters/$id"){
             setBody(chapter)
         }.body()
 
-    suspend fun deleteChapter(id: Int): Boolean = delete("chapters/$id")
+    override suspend fun deleteChapter(id: Int): Boolean = delete("chapters/$id")
 
-    suspend fun exportChapter(id: Int, format: ExportFormat): String {
+    override suspend fun exportChapter(id: Int, format: ExportFormat): String {
         return get("chapters/$id/export/${format.value}").body()
     }
 
@@ -160,23 +160,23 @@ class API(
 
     /* Pages */
 
-    suspend fun getPages(): Pages = get("pages").body()
+    override suspend fun getPages(): Pages = get("pages").body()
 
-    suspend fun createPage(page: CreatePageRequest): CreatePageResponse =
+    override suspend fun createPage(page: CreatePageRequest): CreatePageResponse =
         post("pages"){
             setBody(page)
         }.body()
 
-    suspend fun getPage(id: Int): FullPage = get("pages/$id").body()
+    override suspend fun getPage(id: Int): FullPage = get("pages/$id").body()
 
-    suspend fun updatePage(id: Int, page: CreatePageRequest): CreatePageResponse =
+    override suspend fun updatePage(id: Int, page: CreatePageRequest): CreatePageResponse =
         put("pages/$id"){
             setBody(page)
         }.body()
 
-    suspend fun deletePage(id: Int): Boolean = delete("pages/$id")
+    override suspend fun deletePage(id: Int): Boolean = delete("pages/$id")
 
-    suspend fun exportPage(id: Int, format: ExportFormat): String {
+    override suspend fun exportPage(id: Int, format: ExportFormat): String {
         return get("pages/$id/export/${format.value}").body()
     }
 

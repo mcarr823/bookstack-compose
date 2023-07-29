@@ -1,69 +1,69 @@
 package dev.mcarr.common.ui.screens
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.FabPosition
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.Scaffold
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import dev.mcarr.common.data.interfaces.FullPageInterface
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
-import java.time.format.TextStyle
-import java.util.Locale
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import dev.mcarr.common.data.interfaces.AppDatabaseInterface
+import dev.mcarr.common.data.interfaces.ParentPageInterface
+import dev.mcarr.common.network.ApiInterface
+import dev.mcarr.common.ui.components.PageDetailsView
+import kotlinx.coroutines.launch
 
 @Composable
 fun PageDetailsScreen(
-    page: FullPageInterface
-){
+    db: AppDatabaseInterface,
+    api: ApiInterface,
+    pageId: Int
+) {
 
-    val updatedAt = page.updated_at.toLocalDateTime(TimeZone.UTC)
-    val lastUpdated = "Last updated: %d:%02d, %d %s %04d".format(
-        updatedAt.hour,
-        updatedAt.minute,
-        updatedAt.dayOfMonth,
-        updatedAt.month.getDisplayName(TextStyle.SHORT, Locale.US),
-        updatedAt.year
-    )
+    val coroutineScope = rememberCoroutineScope()
+    var page by remember { mutableStateOf<ParentPageInterface?>(null) }
 
-    Column {
-        Card(
-            modifier = Modifier.padding(16.dp).fillMaxWidth(),
-            elevation = 5.dp
-        ) {
-            Column(
-                modifier = Modifier.padding(16.dp).fillMaxWidth(),
+    val refresh: suspend () -> Unit = {
+
+        page = null
+
+        val tmpPage = api.getPage(pageId)
+        db.setFullPage(tmpPage)
+
+        page = tmpPage
+
+    }
+
+    Scaffold(
+        floatingActionButtonPosition = FabPosition.End,
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    coroutineScope.launch {
+                        refresh()
+                    }
+                }
             ) {
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    style = MaterialTheme.typography.h2,
-                    text = page.name
-                )
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    style = MaterialTheme.typography.h5,
-                    text = page.slug
-                )
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    style = MaterialTheme.typography.h6,
-                    //textAlign = TextAlign.End,
-                    text = lastUpdated
-                )
+                Icon(Icons.Filled.Refresh, "")
             }
-
         }
+    ) {
+        PageDetailsView(page)
+    }
 
-        Card(
-            modifier = Modifier.padding(16.dp).fillMaxWidth(),
-            elevation = 5.dp
-        ){
-            Text(page.html)
+    LaunchedEffect(Unit) {
+        val tmpPage = db.getFullPage(pageId)
+        if (tmpPage != null) {
+            page = tmpPage
+        } else {
+            refresh()
         }
-
     }
 
 }

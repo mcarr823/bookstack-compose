@@ -60,6 +60,7 @@ interface AppDatabaseInterface {
     /* Chapters */
 
     suspend fun getChapters(): List<ChapterInterface>
+    suspend fun getFullChaptersByBookId(bookId: Int): List<FullChapterInterface>
     suspend fun setChapters(data: Chapters)
     suspend fun getChapter(id: Int): ChapterInterface?
     suspend fun setChapter(data: ChapterInterface)
@@ -80,6 +81,7 @@ interface AppDatabaseInterface {
     suspend fun deletePage(id: Int)
 
     suspend fun getFullPage(id: Int): FullPage?
+    suspend fun getFullPagesByBookId(bookId: Int): List<FullPageInterface>
     suspend fun setFullPage(data: FullPage)
     suspend fun deleteFullPage(id: Int)
 

@@ -15,6 +15,7 @@ import dev.mcarr.common.data.interfaces.BookInterface
 import dev.mcarr.common.data.interfaces.ChapterInterface
 import dev.mcarr.common.data.interfaces.FullBookInterface
 import dev.mcarr.common.data.interfaces.FullChapterInterface
+import dev.mcarr.common.data.interfaces.FullPageInterface
 import kotlinx.datetime.Clock
 
 class FakeAppDatabase : AppDatabaseInterface {
@@ -91,6 +92,7 @@ class FakeAppDatabase : AppDatabaseInterface {
     override suspend fun deleteChapter(id: Int) = Unit
 
     override suspend fun getFullChapter(id: Int): FullChapterInterface? = null
+    override suspend fun getFullChaptersByBookId(bookId: Int): List<FullChapterInterface> = listOf()
     override suspend fun setFullChapter(data: FullChapterInterface) = Unit
     override suspend fun deleteFullChapter(id: Int) = Unit
 
@@ -101,6 +103,7 @@ class FakeAppDatabase : AppDatabaseInterface {
     override suspend fun deletePage(id: Int) = Unit
 
     override suspend fun getFullPage(id: Int): FullPage? = null
+    override suspend fun getFullPagesByBookId(bookId: Int): List<FullPageInterface> = listOf()
     override suspend fun setFullPage(data: FullPage) = Unit
     override suspend fun deleteFullPage(id: Int) = Unit
 

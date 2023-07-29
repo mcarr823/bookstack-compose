@@ -5,6 +5,7 @@ import dev.mcarr.common.data.interfaces.BookInterface
 import dev.mcarr.common.data.interfaces.ChapterInterface
 import dev.mcarr.common.data.interfaces.FullBookInterface
 import dev.mcarr.common.data.interfaces.FullChapterInterface
+import dev.mcarr.common.data.interfaces.FullPageInterface
 
 /**
  * Desktop version of AppDatabase.
@@ -72,6 +73,7 @@ class AppDatabase : AppDatabaseInterface {
 
     private val fullChapters = HashMap<Int, FullChapterInterface>()
     override suspend fun getFullChapter(id: Int) = fullChapters[id]
+    override suspend fun getFullChaptersByBookId(bookId: Int) = fullChapters.map { it.value }.filter { it.book_id == bookId }
     override suspend fun setFullChapter(data: FullChapterInterface) = fullChapters.set(data.id, data)
     override suspend fun deleteFullChapter(id: Int) { fullChapters.remove(id) }
 
@@ -91,6 +93,7 @@ class AppDatabase : AppDatabaseInterface {
 
     private var fullPages = HashMap<Int, FullPage>()
     override suspend fun getFullPage(id: Int): FullPage? = fullPages[id]
+    override suspend fun getFullPagesByBookId(bookId: Int) = fullPages.map { it.value }.filter { it.book_id == bookId }
     override suspend fun setFullPage(data: FullPage) = fullPages.set(data.id, data)
     override suspend fun deleteFullPage(id: Int) { fullPages.remove(id) }
 

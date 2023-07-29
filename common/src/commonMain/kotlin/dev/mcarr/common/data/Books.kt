@@ -53,6 +53,11 @@ data class BookContent(
     val pages: List<Page> = listOf()
 )
 
+enum class BookContentFormat(val type: String) {
+    CHAPTER("chapter"),
+    PAGE("page")
+}
+
 @Serializable
 data class BookCover(
     val id: Int,

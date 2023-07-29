@@ -17,17 +17,28 @@ import java.util.Locale
 
 @Composable
 fun ChapterDetailsView(
-    chapter: ParentChapterInterface
+    chapter: ParentChapterInterface?
 ) {
 
-    val updatedAt = chapter.updated_at.toLocalDateTime(TimeZone.UTC)
-    val lastUpdated = "Last updated: %d:%02d, %d %s %04d".format(
-        updatedAt.hour,
-        updatedAt.minute,
-        updatedAt.dayOfMonth,
-        updatedAt.month.getDisplayName(TextStyle.SHORT, Locale.US),
-        updatedAt.year
-    )
+    val name: String
+    val description: String
+    val lastUpdated: String
+    if (chapter != null){
+        name = chapter.name
+        description = chapter.description
+        val updatedAt = chapter.updated_at.toLocalDateTime(TimeZone.UTC)
+        lastUpdated = "Last updated: %d:%02d, %d %s %04d".format(
+            updatedAt.hour,
+            updatedAt.minute,
+            updatedAt.dayOfMonth,
+            updatedAt.month.getDisplayName(TextStyle.SHORT, Locale.US),
+            updatedAt.year
+        )
+    }else{
+        name = "Loading..."
+        description = "Loading..."
+        lastUpdated = "Loading..."
+    }
 
     Card(
         modifier = Modifier.padding(16.dp).fillMaxWidth(),
@@ -39,12 +50,12 @@ fun ChapterDetailsView(
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 style = MaterialTheme.typography.h2,
-                text = chapter.name
+                text = name
             )
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 style = MaterialTheme.typography.h5,
-                text = chapter.description
+                text = description
             )
             Text(
                 modifier = Modifier.fillMaxWidth(),

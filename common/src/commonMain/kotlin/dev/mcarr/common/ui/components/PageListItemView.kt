@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.mcarr.common.data.interfaces.PageInterface
+import dev.mcarr.common.data.interfaces.ParentPageInterface
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import java.time.format.TextStyle
@@ -19,10 +20,11 @@ import java.util.Locale
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PageListItemView(
-    page: PageInterface,
-    onTap: (page: PageInterface) -> Unit
+    page: ParentPageInterface,
+    onTap: (page: ParentPageInterface) -> Unit
 ) {
 
+    val url = if (page is PageInterface) page.url else ""
     val updatedAt = page.updated_at.toLocalDateTime(TimeZone.UTC)
     val lastUpdated = "Last updated: %d:%02d, %d %s %04d".format(
         updatedAt.hour,
@@ -47,11 +49,13 @@ fun PageListItemView(
                 style = MaterialTheme.typography.h2,
                 text = page.name
             )
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                style = MaterialTheme.typography.h5,
-                text = page.url
-            )
+            if (url.isNotEmpty()) {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    style = MaterialTheme.typography.h5,
+                    text = url
+                )
+            }
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 style = MaterialTheme.typography.h6,
@@ -63,4 +67,3 @@ fun PageListItemView(
     }
 
 }
-

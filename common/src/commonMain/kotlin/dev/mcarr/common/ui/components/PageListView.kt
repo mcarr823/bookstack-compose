@@ -7,13 +7,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.mcarr.common.data.interfaces.PageInterface
-import dev.mcarr.common.ui.components.PageListItemView
+import dev.mcarr.common.data.interfaces.ParentPageInterface
 
 @Composable
 fun PageListView(
-    pages: List<PageInterface>,
-    onTap: (page: PageInterface) -> Unit
+    pages: List<ParentPageInterface>,
+    onTap: (page: ParentPageInterface) -> Unit
 ) {
 
     LazyColumn(

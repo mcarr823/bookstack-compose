@@ -2,16 +2,16 @@ package dev.mcarr.common.ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
-import dev.mcarr.common.data.interfaces.FullChapterInterface
-import dev.mcarr.common.data.interfaces.PageInterface
+import dev.mcarr.common.data.interfaces.ParentChapterInterface
+import dev.mcarr.common.data.interfaces.ParentPageInterface
 import dev.mcarr.common.ui.components.ChapterDetailsView
 import dev.mcarr.common.ui.components.PageListView
 
 @Composable
 fun ChapterDetailsScreen(
-    chapter: FullChapterInterface,
-    pages: List<PageInterface>,
-    onTap: (page: PageInterface) -> Unit
+    chapter: ParentChapterInterface,
+    pages: List<ParentPageInterface>,
+    onTap: (page: ParentPageInterface) -> Unit
 ){
 
     Column {

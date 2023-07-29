@@ -9,7 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.mcarr.common.data.interfaces.FullChapterInterface
+import dev.mcarr.common.data.interfaces.ParentChapterInterface
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import java.time.format.TextStyle
@@ -17,7 +17,7 @@ import java.util.Locale
 
 @Composable
 fun ChapterDetailsView(
-    chapter: FullChapterInterface
+    chapter: ParentChapterInterface
 ) {
 
     val updatedAt = chapter.updated_at.toLocalDateTime(TimeZone.UTC)

@@ -4,8 +4,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -29,15 +33,18 @@ fun ChapterDetailsScreen(
     db: AppDatabaseInterface,
     api: ApiInterface,
     chapterId: Int,
-    onTap: (page: ParentPageInterface) -> Unit
+    onTap: (page: ParentPageInterface) -> Unit,
+    goBack: () -> Unit
 ){
 
     val coroutineScope = rememberCoroutineScope()
     var chapter by remember { mutableStateOf<ParentChapterInterface?>(null) }
+    var name by remember { mutableStateOf("Loading...") }
     val pages = remember { mutableStateListOf<FullPageInterface>() }
 
     val refresh: suspend () -> Unit = {
 
+        name = "Loading..."
         chapter = null
         pages.clear()
 
@@ -51,10 +58,27 @@ fun ChapterDetailsScreen(
         }
 
         chapter = tmpChapter
+        name = tmpChapter.name
 
     }
 
     Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(text = name) },
+                navigationIcon = {
+                    IconButton(
+                        onClick = { goBack() }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                }
+
+            )
+        },
         floatingActionButtonPosition = FabPosition.End,
         floatingActionButton = {
             FloatingActionButton(
@@ -84,6 +108,7 @@ fun ChapterDetailsScreen(
         val tmpChapter = db.getFullChapter(chapterId)
         if (tmpChapter != null) {
             chapter = tmpChapter
+            name = tmpChapter.name
         } else {
             refresh()
         }

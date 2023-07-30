@@ -4,8 +4,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -24,6 +28,7 @@ import dev.mcarr.common.data.interfaces.ParentChapterInterface
 import dev.mcarr.common.data.interfaces.ParentPageInterface
 import dev.mcarr.common.network.ApiInterface
 import dev.mcarr.common.ui.components.BookDetailsView
+import dev.mcarr.common.ui.components.ChapterAndPageListView
 import dev.mcarr.common.ui.components.ChapterListView
 import dev.mcarr.common.ui.components.PageListView
 import kotlinx.coroutines.launch
@@ -34,10 +39,12 @@ fun BookDetailsScreen(
     api: ApiInterface,
     bookId: Int,
     onTapChapter: (chapter: ParentChapterInterface) -> Unit,
-    onTapPage: (chapter: ParentPageInterface) -> Unit
+    onTapPage: (chapter: ParentPageInterface) -> Unit,
+    goBack: () -> Unit
 ) {
 
     val coroutineScope = rememberCoroutineScope()
+    var name by remember { mutableStateOf("Loading...") }
     var book by remember { mutableStateOf<ParentBookInterface?>(null) }
     val chapters = remember { mutableStateListOf<FullChapterInterface>() }
     val pages = remember { mutableStateListOf<FullPageInterface>() }
@@ -61,11 +68,28 @@ fun BookDetailsScreen(
                 pages.add(page)
             }
         }
+        name = tmpBook.name
         book = tmpBook
 
     }
 
     Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(text = name) },
+                navigationIcon = {
+                    IconButton(
+                        onClick = { goBack() }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                }
+
+            )
+        },
         floatingActionButtonPosition = FabPosition.End,
         floatingActionButton = {
             FloatingActionButton(
@@ -101,6 +125,7 @@ fun BookDetailsScreen(
     LaunchedEffect(Unit){
         val tmpBook = db.getBookFull(bookId)
         if (tmpBook != null){
+            name = tmpBook.name
             db.getFullChaptersByBookId(bookId).let(chapters::addAll)
             db.getFullPagesByBookId(bookId).let(pages::addAll)
             book = tmpBook

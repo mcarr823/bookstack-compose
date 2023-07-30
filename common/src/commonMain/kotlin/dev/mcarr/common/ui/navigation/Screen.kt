@@ -7,4 +7,20 @@ abstract class Screen : Parcelable {
     @Parcelize
     object List : Screen()
 
+
+    @Parcelize
+    object Setup : Screen()
+
+    @Parcelize
+    object BookList : Screen()
+
+    @Parcelize
+    data class Book(val bookId: Int) : Screen()
+
+    @Parcelize
+    data class Chapter(val chapterId: Int) : Screen()
+
+    @Parcelize
+    data class Page(val pageId: Int) : Screen()
+
 }

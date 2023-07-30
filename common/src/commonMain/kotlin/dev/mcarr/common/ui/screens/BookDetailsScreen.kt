@@ -108,15 +108,13 @@ fun BookDetailsScreen(
                 book = book
             )
 
-            ChapterListView(
-                chapters = chapters,
-                onTap = onTapChapter
-            )
+        ChapterAndPageListView(
+            chapters = chapters,
+            pages = pages,
+            onTapChapter = onTapChapter,
+            onTapPage = onTapPage
+        )
 
-            PageListView(
-                pages = pages,
-                onTap = onTapPage
-            )
 
             //TODO: pull to refresh
         }

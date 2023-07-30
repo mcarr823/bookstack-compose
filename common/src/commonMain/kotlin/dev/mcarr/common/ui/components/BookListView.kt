@@ -13,8 +13,7 @@ import dev.mcarr.common.ui.components.BookListItemView
 @Composable
 fun BookListView(
     books: List<BookInterface>,
-    onTap: (book: BookInterface) -> Unit,
-    onPull: () -> Unit
+    onTap: (book: BookInterface) -> Unit
 ) {
 
     LazyColumn(

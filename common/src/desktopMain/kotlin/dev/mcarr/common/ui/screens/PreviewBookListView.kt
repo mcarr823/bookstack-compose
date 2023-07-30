@@ -19,8 +19,7 @@ fun PreviewBookListView(){
         Surface {
             BookListView(
                 books = books,
-                onTap = {},
-                onPull = {}
+                onTap = {}
             )
         }
     }

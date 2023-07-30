@@ -1,6 +1,8 @@
 package dev.mcarr.common.network
 
 import dev.mcarr.common.data.*
+import dev.mcarr.common.data.classes.BookstackException
+import dev.mcarr.common.data.classes.BookstackExceptionMessage
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*
@@ -62,7 +64,18 @@ class API(
         if (httpResponse.status.value in 200..299) {
             return httpResponse
         }else{
-            throw Exception() //TODO: parse error message
+            val exc =
+                try {
+                    httpResponse.body() as BookstackException
+                }catch (e: Exception){
+                    BookstackException(
+                        BookstackExceptionMessage(
+                            message = "Failed to parse server response",
+                            code = 400
+                        )
+                    )
+                }
+            throw exc
         }
     }
 

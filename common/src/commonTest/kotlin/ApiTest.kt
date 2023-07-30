@@ -1,6 +1,6 @@
 import dev.mcarr.common.data.*
+import dev.mcarr.common.data.classes.BookstackException
 import dev.mcarr.common.network.API
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 
@@ -13,6 +13,27 @@ class ApiTest {
         disableHttpsVerification = true,
         testing = true
     )
+
+    /**
+     * Attempts to invoke an exception from the server and parse it as a BookstackException.
+     * Test succeeds if a BookstackException is thrown.
+     **/
+    @Test
+    fun testBookstackException(){
+
+        runTest {
+            var success = false
+            try {
+                api.getAttachment(-999)
+            }catch (e: BookstackException){
+                success = true
+            }catch (e: Exception){
+                e.printStackTrace()
+            }
+            assert(success)
+        }
+
+    }
 
     @Test
     fun testDocs(){

@@ -1,4 +1,4 @@
-package dev.mcarr.common.data
+package dev.mcarr.common.data.classes
 
 import kotlinx.serialization.Serializable
 

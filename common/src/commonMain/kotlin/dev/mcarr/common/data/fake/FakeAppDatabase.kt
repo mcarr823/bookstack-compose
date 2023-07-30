@@ -1,15 +1,15 @@
 package dev.mcarr.common.data.fake
 
-import dev.mcarr.common.data.Attachments
-import dev.mcarr.common.data.Author
-import dev.mcarr.common.data.Book
-import dev.mcarr.common.data.Books
-import dev.mcarr.common.data.Chapters
-import dev.mcarr.common.data.FullAttachment
-import dev.mcarr.common.data.FullBook
-import dev.mcarr.common.data.FullPage
-import dev.mcarr.common.data.Page
-import dev.mcarr.common.data.Pages
+import dev.mcarr.common.data.classes.Attachments
+import dev.mcarr.common.data.classes.Author
+import dev.mcarr.common.data.classes.Book
+import dev.mcarr.common.data.classes.Books
+import dev.mcarr.common.data.classes.Chapters
+import dev.mcarr.common.data.classes.FullAttachment
+import dev.mcarr.common.data.classes.FullBook
+import dev.mcarr.common.data.classes.FullPage
+import dev.mcarr.common.data.classes.Page
+import dev.mcarr.common.data.classes.Pages
 import dev.mcarr.common.data.interfaces.AppDatabaseInterface
 import dev.mcarr.common.data.interfaces.BookInterface
 import dev.mcarr.common.data.interfaces.ChapterInterface

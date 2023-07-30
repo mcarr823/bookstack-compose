@@ -2,9 +2,9 @@ package dev.mcarr.android.data.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import dev.mcarr.common.data.Author
-import dev.mcarr.common.data.Page
-import dev.mcarr.common.data.Tag
+import dev.mcarr.common.data.classes.Author
+import dev.mcarr.common.data.classes.Page
+import dev.mcarr.common.data.classes.Tag
 import dev.mcarr.common.data.interfaces.FullChapterInterface
 import kotlinx.datetime.Instant
 

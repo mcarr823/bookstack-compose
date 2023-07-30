@@ -1,7 +1,7 @@
 package dev.mcarr.common.data.interfaces
 
-import dev.mcarr.common.data.Author
-import dev.mcarr.common.data.Tag
+import dev.mcarr.common.data.classes.Author
+import dev.mcarr.common.data.classes.Tag
 
 interface FullPageInterface : ParentPageInterface {
     val created_by: Author

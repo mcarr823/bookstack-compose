@@ -1,11 +1,17 @@
 package dev.mcarr.common.data
 
+import dev.mcarr.common.data.classes.Attachments
+import dev.mcarr.common.data.classes.Books
+import dev.mcarr.common.data.classes.Chapters
+import dev.mcarr.common.data.classes.FullAttachment
+import dev.mcarr.common.data.classes.FullPage
+import dev.mcarr.common.data.classes.Page
+import dev.mcarr.common.data.classes.Pages
 import dev.mcarr.common.data.interfaces.AppDatabaseInterface
 import dev.mcarr.common.data.interfaces.BookInterface
 import dev.mcarr.common.data.interfaces.ChapterInterface
 import dev.mcarr.common.data.interfaces.FullBookInterface
 import dev.mcarr.common.data.interfaces.FullChapterInterface
-import dev.mcarr.common.data.interfaces.FullPageInterface
 
 /**
  * Desktop version of AppDatabase.

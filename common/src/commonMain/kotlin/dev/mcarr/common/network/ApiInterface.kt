@@ -1,20 +1,20 @@
 package dev.mcarr.common.network
 
-import dev.mcarr.common.data.Attachments
-import dev.mcarr.common.data.Books
-import dev.mcarr.common.data.Chapters
-import dev.mcarr.common.data.CreateBookRequest
-import dev.mcarr.common.data.CreateBookResponse
-import dev.mcarr.common.data.CreateChapterRequest
-import dev.mcarr.common.data.CreateChapterResponse
-import dev.mcarr.common.data.CreatePageRequest
-import dev.mcarr.common.data.CreatePageResponse
-import dev.mcarr.common.data.ExportFormat
-import dev.mcarr.common.data.FullAttachment
-import dev.mcarr.common.data.FullBook
-import dev.mcarr.common.data.FullChapter
-import dev.mcarr.common.data.FullPage
-import dev.mcarr.common.data.Pages
+import dev.mcarr.common.data.classes.Attachments
+import dev.mcarr.common.data.classes.Books
+import dev.mcarr.common.data.classes.Chapters
+import dev.mcarr.common.data.classes.CreateBookRequest
+import dev.mcarr.common.data.classes.CreateBookResponse
+import dev.mcarr.common.data.classes.CreateChapterRequest
+import dev.mcarr.common.data.classes.CreateChapterResponse
+import dev.mcarr.common.data.classes.CreatePageRequest
+import dev.mcarr.common.data.classes.CreatePageResponse
+import dev.mcarr.common.data.classes.ExportFormat
+import dev.mcarr.common.data.classes.FullAttachment
+import dev.mcarr.common.data.classes.FullBook
+import dev.mcarr.common.data.classes.FullChapter
+import dev.mcarr.common.data.classes.FullPage
+import dev.mcarr.common.data.classes.Pages
 
 interface ApiInterface {
 

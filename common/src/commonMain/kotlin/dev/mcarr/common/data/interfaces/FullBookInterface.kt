@@ -1,9 +1,9 @@
 package dev.mcarr.common.data.interfaces
 
-import dev.mcarr.common.data.Author
-import dev.mcarr.common.data.BookContent
-import dev.mcarr.common.data.BookCover
-import dev.mcarr.common.data.Tag
+import dev.mcarr.common.data.classes.Author
+import dev.mcarr.common.data.classes.BookContent
+import dev.mcarr.common.data.classes.BookCover
+import dev.mcarr.common.data.classes.Tag
 
 interface FullBookInterface : ParentBookInterface {
     val created_by: Author

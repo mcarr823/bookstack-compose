@@ -15,7 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import dev.mcarr.common.data.BookContentFormat
+import dev.mcarr.common.data.classes.BookContentFormat
 import dev.mcarr.common.data.interfaces.AppDatabaseInterface
 import dev.mcarr.common.data.interfaces.FullChapterInterface
 import dev.mcarr.common.data.interfaces.FullPageInterface

@@ -1,5 +1,11 @@
-import dev.mcarr.common.data.*
 import dev.mcarr.common.data.classes.BookstackException
+import dev.mcarr.common.data.classes.CreateBookRequest
+import dev.mcarr.common.data.classes.CreateBookResponse
+import dev.mcarr.common.data.classes.CreateChapterRequest
+import dev.mcarr.common.data.classes.CreateChapterResponse
+import dev.mcarr.common.data.classes.CreatePageRequest
+import dev.mcarr.common.data.classes.CreatePageResponse
+import dev.mcarr.common.data.classes.ExportFormat
 import dev.mcarr.common.network.API
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test

@@ -1,8 +1,22 @@
 package dev.mcarr.common.network
 
-import dev.mcarr.common.data.*
+import dev.mcarr.common.data.classes.Attachments
+import dev.mcarr.common.data.classes.Books
 import dev.mcarr.common.data.classes.BookstackException
 import dev.mcarr.common.data.classes.BookstackExceptionMessage
+import dev.mcarr.common.data.classes.Chapters
+import dev.mcarr.common.data.classes.CreateBookRequest
+import dev.mcarr.common.data.classes.CreateBookResponse
+import dev.mcarr.common.data.classes.CreateChapterRequest
+import dev.mcarr.common.data.classes.CreateChapterResponse
+import dev.mcarr.common.data.classes.CreatePageRequest
+import dev.mcarr.common.data.classes.CreatePageResponse
+import dev.mcarr.common.data.classes.ExportFormat
+import dev.mcarr.common.data.classes.FullAttachment
+import dev.mcarr.common.data.classes.FullBook
+import dev.mcarr.common.data.classes.FullChapter
+import dev.mcarr.common.data.classes.FullPage
+import dev.mcarr.common.data.classes.Pages
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*

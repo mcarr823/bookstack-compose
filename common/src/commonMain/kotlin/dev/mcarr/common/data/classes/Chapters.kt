@@ -1,5 +1,6 @@
-package dev.mcarr.common.data
+package dev.mcarr.common.data.classes
 
+import dev.mcarr.common.data.interfaces.BookstackResponse
 import dev.mcarr.common.data.interfaces.ChapterInterface
 import dev.mcarr.common.data.interfaces.FullChapterInterface
 import kotlinx.datetime.Instant

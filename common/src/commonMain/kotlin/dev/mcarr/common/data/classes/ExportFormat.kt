@@ -1,4 +1,4 @@
-package dev.mcarr.common.data
+package dev.mcarr.common.data.classes
 
 enum class ExportFormat(val value: String) {
     HTML("html"),

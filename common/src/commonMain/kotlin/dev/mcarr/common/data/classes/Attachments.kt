@@ -1,5 +1,6 @@
-package dev.mcarr.common.data
+package dev.mcarr.common.data.classes
 
+import dev.mcarr.common.data.interfaces.BookstackResponse
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 

@@ -43,7 +43,10 @@ fun BookDetailsScreen(
 
         val tmpBook = api.getBook(bookId)
         db.setBookFull(tmpBook)
-        tmpBook.contents.forEach {
+
+        val total = tmpBook.contents.size
+        tmpBook.contents.forEachIndexed { index, it ->
+            setName("Downloaded $index of $total")
             if (it.type == BookContentFormat.CHAPTER.type){
                 val chapter = api.getChapter(it.id)
                 db.setFullChapter(chapter)
@@ -54,6 +57,7 @@ fun BookDetailsScreen(
                 pages.add(page)
             }
         }
+
         book = tmpBook
         setName(tmpBook.name)
 

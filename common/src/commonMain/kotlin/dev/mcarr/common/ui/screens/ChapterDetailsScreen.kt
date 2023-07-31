@@ -37,7 +37,9 @@ fun ChapterDetailsScreen(
         val tmpChapter = api.getChapter(chapterId)
         db.setFullChapter(tmpChapter)
 
-        tmpChapter.pages.forEach {
+        val total = tmpChapter.pages.size
+        tmpChapter.pages.forEachIndexed { index, it ->
+            setName("Downloaded $index of $total")
             val page = api.getPage(it.id)
             db.setFullPage(page)
             pages.add(page)

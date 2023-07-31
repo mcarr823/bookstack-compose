@@ -32,7 +32,8 @@ fun Setup(
     defaultEndpoint: String,
     defaultTokenId: String,
     defaultTokenSecret: String,
-    connect: (endpoint: String, tokenId: String, tokenSecret: String) -> Unit
+    defaultDisableHttpsVerification: Boolean,
+    connect: (newApi: API) -> Unit
 ) {
 
     val coroutineScope = rememberCoroutineScope()
@@ -45,6 +46,7 @@ fun Setup(
     var tokenSecret by rememberSaveable(stateSaver = TextFieldValue.Saver) {
         mutableStateOf(TextFieldValue(defaultTokenSecret))
     }
+    val (checkedState, onStateChange) = remember { mutableStateOf(defaultDisableHttpsVerification) }
     var saving by remember { mutableStateOf(false) }
     var message by remember { mutableStateOf("") }
     var messageColor by remember { mutableStateOf(Color.Red) }
@@ -79,6 +81,36 @@ fun Setup(
             onValueChange = { tokenSecret = it },
             label = { Text("Token secret") },
             modifier = Modifier.fillMaxWidth().padding(16.dp)
+        )
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .height(56.dp)
+                .toggleable(
+                    value = checkedState,
+                    onValueChange = { onStateChange(!checkedState) },
+                    role = Role.Checkbox
+                )
+                .padding(horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Checkbox(
+                checked = checkedState,
+                onCheckedChange = null // null recommended for accessibility with screenreaders
+            )
+            Text(
+                text = "Disable HTTPS verification",
+                modifier = Modifier.padding(start = 16.dp)
+            )
+        }
+
+        Spacer(
+            modifier = Modifier.height(20.dp)
+        )
+        Text(
+            text = message,
+            modifier = Modifier.padding(16.dp, 0.dp, 0.dp, 0.dp),
+            color = messageColor
         )
         Button(
             onClick = {

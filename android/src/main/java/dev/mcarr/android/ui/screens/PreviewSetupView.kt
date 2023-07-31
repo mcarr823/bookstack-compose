@@ -13,7 +13,8 @@ fun PreviewSetupView(){
             defaultEndpoint = "",
             defaultTokenId = "",
             defaultTokenSecret = "",
-            connect = { _, _, _ ->}
+            defaultDisableHttpsVerification = false,
+            connect = {}
         )
     }
 }

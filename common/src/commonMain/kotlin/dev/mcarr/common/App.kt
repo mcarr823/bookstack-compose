@@ -127,16 +127,10 @@ fun App(
                     Setup(
                         defaultEndpoint = api.apiUrl,
                         defaultTokenId = api.tokenId,
-                        defaultTokenSecret = api.tokenSecret
-                    ) { endpoint: String, clientId: String, clientSecret: String ->
-                        api = API(
-                            apiUrl = endpoint,
-                            tokenId = clientId,
-                            tokenSecret = clientSecret,
-                            disableHttpsVerification = true,
-                            testing = true
-                        )
-                        navigation.push(Screen.BookList)
+                        defaultTokenSecret = api.tokenSecret,
+                        defaultDisableHttpsVerification = api.disableHttpsVerification,
+                    ) { newApi ->
+                        api = newApi
                     }
                 }
 

@@ -8,3 +8,9 @@ data class Author(
     val name: String,
     val slug: String = "",
 )
+
+enum class AuthorRole(val value: String) {
+    CREATED("created"),
+    UPDATED("updated"),
+    OWNED("owned")
+}

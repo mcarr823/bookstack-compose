@@ -16,9 +16,9 @@ repositories {
 dependencies {
     val room_version = "2.5.2"
     implementation(project(":common"))
-    implementation("androidx.activity:activity-compose:1.5.0")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.1.1")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.1.1")
+    implementation("androidx.activity:activity-compose:1.7.2")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.4.3")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.4.3")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
@@ -28,6 +28,7 @@ dependencies {
 }
 
 android {
+    namespace = "dev.mcarr.android"
     compileSdkVersion(33)
     defaultConfig {
         applicationId = "dev.mcarr.android"
@@ -48,4 +49,8 @@ android {
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.2"
+    }
+
 }

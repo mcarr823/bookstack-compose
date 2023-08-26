@@ -3,6 +3,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
 
 }
 
@@ -21,6 +22,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:1.4.3")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
     implementation("androidx.room:room-runtime:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
     implementation("com.arkivanov.decompose:decompose:2.0.0")
     implementation("com.arkivanov.decompose:extensions-compose-jetpack:2.0.0")

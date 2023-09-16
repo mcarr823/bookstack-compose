@@ -130,7 +130,7 @@ fun Setup(
                         } catch (e: Exception) {
                             e.printStackTrace()
                             messageColor = Color.Red
-                            message = e.localizedMessage
+                            message = e.localizedMessage ?: "Connection attempt failed"
                         }
                         saving = false
                         if (message.isEmpty()) {

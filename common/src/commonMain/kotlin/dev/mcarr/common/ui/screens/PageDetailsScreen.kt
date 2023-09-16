@@ -26,11 +26,16 @@ fun PageDetailsScreen(
         setName("Loading...")
         page = null
 
-        val tmpPage = api.getPage(pageId)
-        db.setFullPage(tmpPage)
+        try{
+            val tmpPage = api.getPage(pageId)
+            db.setFullPage(tmpPage)
 
-        page = tmpPage
-        setName(tmpPage.name)
+            page = tmpPage
+            setName(tmpPage.name)
+        }catch (e: Exception){
+            e.printStackTrace()
+            setName("Request Failed")
+        }
 
     }
 

@@ -22,10 +22,15 @@ fun BookListScreen(
     val refresh: suspend () -> Unit = {
         setName("Loading...")
         books.clear()
-        val newBooks = api.getBooks()
-        db.setBooks(newBooks)
-        books.addAll(newBooks.data)
-        setName("Book List")
+        try {
+            val newBooks = api.getBooks()
+            db.setBooks(newBooks)
+            books.addAll(newBooks.data)
+            setName("Book List")
+        }catch (e: Exception){
+            e.printStackTrace()
+            setName("Request Failed")
+        }
     }
 
     setRefresh(refresh)

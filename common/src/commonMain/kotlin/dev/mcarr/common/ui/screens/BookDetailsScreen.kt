@@ -41,25 +41,30 @@ fun BookDetailsScreen(
         chapters.clear()
         pages.clear()
 
-        val tmpBook = api.getBook(bookId)
-        db.setBookFull(tmpBook)
+        try {
+            val tmpBook = api.getBook(bookId)
+            db.setBookFull(tmpBook)
 
-        val total = tmpBook.contents.size
-        tmpBook.contents.forEachIndexed { index, it ->
-            setName("Downloaded $index of $total")
-            if (it.type == BookContentFormat.CHAPTER.type){
-                val chapter = api.getChapter(it.id)
-                db.setFullChapter(chapter)
-                chapters.add(chapter)
-            }else if (it.type == BookContentFormat.PAGE.type){
-                val page = api.getPage(it.id)
-                db.setFullPage(page)
-                pages.add(page)
+            val total = tmpBook.contents.size
+            tmpBook.contents.forEachIndexed { index, it ->
+                setName("Downloaded $index of $total")
+                if (it.type == BookContentFormat.CHAPTER.type) {
+                    val chapter = api.getChapter(it.id)
+                    db.setFullChapter(chapter)
+                    chapters.add(chapter)
+                } else if (it.type == BookContentFormat.PAGE.type) {
+                    val page = api.getPage(it.id)
+                    db.setFullPage(page)
+                    pages.add(page)
+                }
             }
-        }
 
-        book = tmpBook
-        setName(tmpBook.name)
+            book = tmpBook
+            setName(tmpBook.name)
+        }catch (e: Exception){
+            e.printStackTrace()
+            setName("Request Failed")
+        }
 
     }
 

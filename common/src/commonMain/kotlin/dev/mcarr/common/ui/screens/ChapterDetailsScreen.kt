@@ -34,19 +34,24 @@ fun ChapterDetailsScreen(
         chapter = null
         pages.clear()
 
-        val tmpChapter = api.getChapter(chapterId)
-        db.setFullChapter(tmpChapter)
+        try{
+            val tmpChapter = api.getChapter(chapterId)
+            db.setFullChapter(tmpChapter)
 
-        val total = tmpChapter.pages.size
-        tmpChapter.pages.forEachIndexed { index, it ->
-            setName("Downloaded $index of $total")
-            val page = api.getPage(it.id)
-            db.setFullPage(page)
-            pages.add(page)
+            val total = tmpChapter.pages.size
+            tmpChapter.pages.forEachIndexed { index, it ->
+                setName("Downloaded $index of $total")
+                val page = api.getPage(it.id)
+                db.setFullPage(page)
+                pages.add(page)
+            }
+
+            chapter = tmpChapter
+            setName(tmpChapter.name)
+        }catch (e: Exception){
+            e.printStackTrace()
+            setName("Request Failed")
         }
-
-        chapter = tmpChapter
-        setName(tmpChapter.name)
 
     }
 

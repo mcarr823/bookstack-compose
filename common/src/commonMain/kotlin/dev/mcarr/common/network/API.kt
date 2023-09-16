@@ -59,6 +59,7 @@ class API(
         }
     }
 
+    @Throws(Exception::class)
     private suspend fun performRequest(method: HttpMethod, path: String, setBodyCallback: HttpRequestBuilder.() -> Unit): HttpResponse {
         val httpResponse = httpClient.request("$apiUrl/api/$path"){
             this.method = method
@@ -93,6 +94,7 @@ class API(
         }
     }
 
+    @Throws(Exception::class)
     private suspend fun get(path: String): HttpResponse =
         performRequest(HttpMethod.Get, path){}
 
@@ -117,18 +119,22 @@ class API(
 
     /* Docs */
 
+    @Throws(Exception::class)
     override suspend fun getDocsHtml(): String = get("docs").body()
 
+    @Throws(Exception::class)
     override suspend fun getDocsJson(): String = get("docs.json").body()
 
 
 
     /* Attachments */
 
+    @Throws(Exception::class)
     override suspend fun getAttachments(): Attachments = get("attachments").body()
 
     //TODO: create attachment
 
+    @Throws(Exception::class)
     override suspend fun getAttachment(id: Int): FullAttachment = get("attachments/$id").body()
 
     //TODO: update attachment
@@ -139,15 +145,19 @@ class API(
 
     /* Books */
 
+    @Throws(Exception::class)
     override suspend fun getBooks(): Books = get("books").body()
 
+    @Throws(Exception::class)
     override suspend fun createBook(book: CreateBookRequest): CreateBookResponse =
         post("books") {
             setBody(book)
         }.body()
 
+    @Throws(Exception::class)
     override suspend fun getBook(id: Int): FullBook = get("books/$id").body()
 
+    @Throws(Exception::class)
     override suspend fun updateBook(id: Int, book: CreateBookRequest): CreateBookResponse =
         put("books/$id"){
             setBody(book)
@@ -155,6 +165,7 @@ class API(
 
     override suspend fun deleteBook(id: Int): Boolean = delete("books/$id")
 
+    @Throws(Exception::class)
     override suspend fun exportBook(id: Int, format: ExportFormat): String {
         return get("books/$id/export/${format.value}").body()
     }
@@ -163,15 +174,19 @@ class API(
 
     /* Chapters */
 
+    @Throws(Exception::class)
     override suspend fun getChapters(): Chapters = get("chapters").body()
 
+    @Throws(Exception::class)
     override suspend fun createChapter(chapter: CreateChapterRequest): CreateChapterResponse =
         post("chapters"){
             setBody(chapter)
         }.body()
 
+    @Throws(Exception::class)
     override suspend fun getChapter(id: Int): FullChapter = get("chapters/$id").body()
 
+    @Throws(Exception::class)
     override suspend fun updateChapter(id: Int, chapter: CreateChapterRequest): CreateChapterResponse =
         put("chapters/$id"){
             setBody(chapter)
@@ -179,6 +194,7 @@ class API(
 
     override suspend fun deleteChapter(id: Int): Boolean = delete("chapters/$id")
 
+    @Throws(Exception::class)
     override suspend fun exportChapter(id: Int, format: ExportFormat): String {
         return get("chapters/$id/export/${format.value}").body()
     }
@@ -187,15 +203,19 @@ class API(
 
     /* Pages */
 
+    @Throws(Exception::class)
     override suspend fun getPages(): Pages = get("pages").body()
 
+    @Throws(Exception::class)
     override suspend fun createPage(page: CreatePageRequest): CreatePageResponse =
         post("pages"){
             setBody(page)
         }.body()
 
+    @Throws(Exception::class)
     override suspend fun getPage(id: Int): FullPage = get("pages/$id").body()
 
+    @Throws(Exception::class)
     override suspend fun updatePage(id: Int, page: CreatePageRequest): CreatePageResponse =
         put("pages/$id"){
             setBody(page)
@@ -203,6 +223,7 @@ class API(
 
     override suspend fun deletePage(id: Int): Boolean = delete("pages/$id")
 
+    @Throws(Exception::class)
     override suspend fun exportPage(id: Int, format: ExportFormat): String {
         return get("pages/$id/export/${format.value}").body()
     }

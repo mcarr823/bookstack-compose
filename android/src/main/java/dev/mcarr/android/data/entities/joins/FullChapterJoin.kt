@@ -8,7 +8,6 @@ import dev.mcarr.android.data.entities.FullChapterEntity
 import dev.mcarr.android.data.entities.PageEntity
 import dev.mcarr.common.data.classes.AuthorRole
 import dev.mcarr.common.data.classes.FullChapter
-import dev.mcarr.common.data.interfaces.FullChapterInterface
 import kotlinx.datetime.toInstant
 
 class FullChapterJoin(
@@ -42,7 +41,7 @@ class FullChapterJoin(
     )
 
     companion object{
-        fun fromJson(json: FullChapterInterface) =
+        fun fromJson(json: FullChapter) =
             FullChapterJoin(
                 entity = FullChapterEntity(json)
             ).apply {

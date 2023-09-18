@@ -3,12 +3,7 @@ package dev.mcarr.android.data.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import dev.mcarr.common.data.classes.Author
-import dev.mcarr.common.data.classes.Page
-import dev.mcarr.common.data.classes.Tag
-import dev.mcarr.common.data.interfaces.FullBookInterface
-import dev.mcarr.common.data.interfaces.FullChapterInterface
-import kotlinx.datetime.Instant
+import dev.mcarr.common.data.classes.FullChapter
 
 @Entity(tableName = FullChapterEntity.TABLE_NAME)
 data class FullChapterEntity(
@@ -31,7 +26,7 @@ data class FullChapterEntity(
     val updated_at: String
 ) {
 
-    constructor(json: FullChapterInterface) : this(
+    constructor(json: FullChapter) : this(
         id = json.id,
         book_id = json.book_id,
         name = json.name,

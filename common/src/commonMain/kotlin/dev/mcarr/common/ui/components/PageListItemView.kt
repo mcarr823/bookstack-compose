@@ -10,7 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.mcarr.common.data.interfaces.PageInterface
+import dev.mcarr.common.data.classes.Page
 import dev.mcarr.common.data.interfaces.ParentPageInterface
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -24,7 +24,7 @@ fun PageListItemView(
     onTap: (page: ParentPageInterface) -> Unit
 ) {
 
-    val url = if (page is PageInterface) page.url else ""
+    val url = if (page is Page) page.url else ""
     val updatedAt = page.updated_at.toLocalDateTime(TimeZone.UTC)
     val lastUpdated = "Last updated: %d:%02d, %d %s %04d".format(
         updatedAt.hour,

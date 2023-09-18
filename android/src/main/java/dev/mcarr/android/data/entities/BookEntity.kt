@@ -4,8 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import dev.mcarr.common.data.classes.Book
-import dev.mcarr.common.data.interfaces.BookInterface
-import kotlinx.datetime.Instant
 import kotlinx.datetime.toInstant
 
 @Entity(tableName = BookEntity.TABLE_NAME)
@@ -31,7 +29,7 @@ data class BookEntity(
     val owned_by: Int
 ) {
 
-    constructor(json: BookInterface) : this(
+    constructor(json: Book) : this(
         id = json.id,
         name = json.name,
         slug = json.slug,

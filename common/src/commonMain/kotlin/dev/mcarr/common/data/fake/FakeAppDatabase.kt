@@ -4,18 +4,15 @@ import dev.mcarr.common.data.classes.Attachments
 import dev.mcarr.common.data.classes.Author
 import dev.mcarr.common.data.classes.Book
 import dev.mcarr.common.data.classes.Books
+import dev.mcarr.common.data.classes.Chapter
 import dev.mcarr.common.data.classes.Chapters
 import dev.mcarr.common.data.classes.FullAttachment
 import dev.mcarr.common.data.classes.FullBook
+import dev.mcarr.common.data.classes.FullChapter
 import dev.mcarr.common.data.classes.FullPage
 import dev.mcarr.common.data.classes.Page
 import dev.mcarr.common.data.classes.Pages
 import dev.mcarr.common.data.interfaces.AppDatabaseInterface
-import dev.mcarr.common.data.interfaces.BookInterface
-import dev.mcarr.common.data.interfaces.ChapterInterface
-import dev.mcarr.common.data.interfaces.FullBookInterface
-import dev.mcarr.common.data.interfaces.FullChapterInterface
-import dev.mcarr.common.data.interfaces.FullPageInterface
 import kotlinx.datetime.Clock
 
 class FakeAppDatabase : AppDatabaseInterface {
@@ -30,7 +27,7 @@ class FakeAppDatabase : AppDatabaseInterface {
     override suspend fun setAttachment(data: FullAttachment) = Unit
     override suspend fun deleteAttachment(id: Int) = Unit
 
-    override suspend fun getBooks(): List<BookInterface> =
+    override suspend fun getBooks(): List<Book> =
         (1 until 20).map { i ->
             Book(
                 id = i,
@@ -57,11 +54,11 @@ class FakeAppDatabase : AppDatabaseInterface {
             updated_by = 0,
             owned_by = 0
         )
-    override suspend fun setBook(data: BookInterface) = Unit
+    override suspend fun setBook(data: Book) = Unit
     override suspend fun deleteBook(id: Int) = Unit
     override suspend fun deleteBooks() = Unit
 
-    override suspend fun getBookFull(id: Int): FullBookInterface {
+    override suspend fun getBookFull(id: Int): FullBook {
         val author = Author(
             id = 0,
             name = "Mr Author",
@@ -82,18 +79,18 @@ class FakeAppDatabase : AppDatabaseInterface {
             tags = listOf()
         )
     }
-    override suspend fun setBookFull(data: FullBookInterface) = Unit
+    override suspend fun setBookFull(data: FullBook) = Unit
     override suspend fun deleteBookFull(id: Int) = Unit
 
-    override suspend fun getChapters(): List<ChapterInterface> = listOf()
+    override suspend fun getChapters(): List<Chapter> = listOf()
     override suspend fun setChapters(data: Chapters) = Unit
-    override suspend fun getChapter(id: Int): ChapterInterface? = null
-    override suspend fun setChapter(data: ChapterInterface) = Unit
+    override suspend fun getChapter(id: Int): Chapter? = null
+    override suspend fun setChapter(data: Chapter) = Unit
     override suspend fun deleteChapter(id: Int) = Unit
 
-    override suspend fun getFullChapter(id: Int): FullChapterInterface? = null
-    override suspend fun getFullChaptersByBookId(bookId: Int): List<FullChapterInterface> = listOf()
-    override suspend fun setFullChapter(data: FullChapterInterface) = Unit
+    override suspend fun getFullChapter(id: Int): FullChapter? = null
+    override suspend fun getFullChaptersByBookId(bookId: Int): List<FullChapter> = listOf()
+    override suspend fun setFullChapter(data: FullChapter) = Unit
     override suspend fun deleteFullChapter(id: Int) = Unit
 
     override suspend fun getPages(): List<Page> = listOf()
@@ -103,7 +100,7 @@ class FakeAppDatabase : AppDatabaseInterface {
     override suspend fun deletePage(id: Int) = Unit
 
     override suspend fun getFullPage(id: Int): FullPage? = null
-    override suspend fun getFullPagesByBookId(bookId: Int): List<FullPageInterface> = listOf()
+    override suspend fun getFullPagesByBookId(bookId: Int): List<FullPage> = listOf()
     override suspend fun setFullPage(data: FullPage) = Unit
     override suspend fun deleteFullPage(id: Int) = Unit
 

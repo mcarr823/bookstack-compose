@@ -1,9 +1,13 @@
 package dev.mcarr.common.data.interfaces
 
 import dev.mcarr.common.data.classes.Attachments
+import dev.mcarr.common.data.classes.Book
 import dev.mcarr.common.data.classes.Books
+import dev.mcarr.common.data.classes.Chapter
 import dev.mcarr.common.data.classes.Chapters
 import dev.mcarr.common.data.classes.FullAttachment
+import dev.mcarr.common.data.classes.FullBook
+import dev.mcarr.common.data.classes.FullChapter
 import dev.mcarr.common.data.classes.FullPage
 import dev.mcarr.common.data.classes.Page
 import dev.mcarr.common.data.classes.Pages
@@ -42,30 +46,30 @@ interface AppDatabaseInterface {
 
     /* Books */
 
-    suspend fun getBooks(): List<BookInterface>
+    suspend fun getBooks(): List<Book>
     suspend fun setBooks(data: Books)
-    suspend fun getBook(id: Int): BookInterface?
-    suspend fun setBook(data: BookInterface)
+    suspend fun getBook(id: Int): Book?
+    suspend fun setBook(data: Book)
     suspend fun deleteBook(id: Int)
     suspend fun deleteBooks()
 
-    suspend fun getBookFull(id: Int): FullBookInterface?
-    suspend fun setBookFull(data: FullBookInterface)
+    suspend fun getBookFull(id: Int): FullBook?
+    suspend fun setBookFull(data: FullBook)
     suspend fun deleteBookFull(id: Int)
 
 
 
     /* Chapters */
 
-    suspend fun getChapters(): List<ChapterInterface>
-    suspend fun getFullChaptersByBookId(bookId: Int): List<FullChapterInterface>
+    suspend fun getChapters(): List<Chapter>
+    suspend fun getFullChaptersByBookId(bookId: Int): List<FullChapter>
     suspend fun setChapters(data: Chapters)
-    suspend fun getChapter(id: Int): ChapterInterface?
-    suspend fun setChapter(data: ChapterInterface)
+    suspend fun getChapter(id: Int): Chapter?
+    suspend fun setChapter(data: Chapter)
     suspend fun deleteChapter(id: Int)
 
-    suspend fun getFullChapter(id: Int): FullChapterInterface?
-    suspend fun setFullChapter(data: FullChapterInterface)
+    suspend fun getFullChapter(id: Int): FullChapter?
+    suspend fun setFullChapter(data: FullChapter)
     suspend fun deleteFullChapter(id: Int)
 
 
@@ -79,7 +83,7 @@ interface AppDatabaseInterface {
     suspend fun deletePage(id: Int)
 
     suspend fun getFullPage(id: Int): FullPage?
-    suspend fun getFullPagesByBookId(bookId: Int): List<FullPageInterface>
+    suspend fun getFullPagesByBookId(bookId: Int): List<FullPage>
     suspend fun setFullPage(data: FullPage)
     suspend fun deleteFullPage(id: Int)
 

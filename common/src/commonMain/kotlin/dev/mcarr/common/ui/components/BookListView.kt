@@ -7,13 +7,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.mcarr.common.data.interfaces.BookInterface
-import dev.mcarr.common.ui.components.BookListItemView
+import dev.mcarr.common.data.classes.Book
 
 @Composable
 fun BookListView(
-    books: List<BookInterface>,
-    onTap: (book: BookInterface) -> Unit
+    books: List<Book>,
+    onTap: (book: Book) -> Unit
 ) {
 
     LazyColumn(

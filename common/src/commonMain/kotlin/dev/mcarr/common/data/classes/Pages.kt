@@ -1,8 +1,7 @@
 package dev.mcarr.common.data.classes
 
 import dev.mcarr.common.data.interfaces.BookstackResponse
-import dev.mcarr.common.data.interfaces.FullPageInterface
-import dev.mcarr.common.data.interfaces.PageInterface
+import dev.mcarr.common.data.interfaces.ParentPageInterface
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
@@ -24,11 +23,11 @@ data class Page(
     override val template: Boolean,
     override val created_at: Instant,
     override val updated_at: Instant,
-    override val url: String = "",
-    override val created_by: Int = -1,
-    override val updated_by: Int = -1,
-    override val owned_by: Int = -1,
-) : PageInterface
+    val url: String = "",
+    val created_by: Int = -1,
+    val updated_by: Int = -1,
+    val owned_by: Int = -1,
+) : ParentPageInterface
 
 @Serializable
 data class FullPage(
@@ -41,15 +40,15 @@ data class FullPage(
     override val template: Boolean,
     override val created_at: Instant,
     override val updated_at: Instant,
-    override val created_by: Author,
-    override val updated_by: Author,
-    override val owned_by: Author,
-    override val tags: List<Tag>,
+    val created_by: Author,
+    val updated_by: Author,
+    val owned_by: Author,
+    val tags: List<Tag>,
     override val priority: Int,
-    override val revision_count: Int,
-    override val html: String,
-    override val markdown: String,
-) : FullPageInterface
+    val revision_count: Int,
+    val html: String,
+    val markdown: String,
+) : ParentPageInterface
 
 /**
  * Must specify bookId OR chapterId.

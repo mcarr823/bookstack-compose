@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import dev.mcarr.common.data.classes.Chapter
-import dev.mcarr.common.data.interfaces.ChapterInterface
 import kotlinx.datetime.Instant
 import kotlinx.datetime.toInstant
 
@@ -33,7 +32,7 @@ data class ChapterEntity(
     val updated_by: Int
 ) {
 
-    constructor(json: ChapterInterface) : this(
+    constructor(json: Chapter) : this(
         id = json.id,
         book_id = json.book_id,
         name = json.name,

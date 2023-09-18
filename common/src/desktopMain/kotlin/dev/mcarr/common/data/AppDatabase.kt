@@ -1,17 +1,17 @@
 package dev.mcarr.common.data
 
 import dev.mcarr.common.data.classes.Attachments
+import dev.mcarr.common.data.classes.Book
 import dev.mcarr.common.data.classes.Books
+import dev.mcarr.common.data.classes.Chapter
 import dev.mcarr.common.data.classes.Chapters
 import dev.mcarr.common.data.classes.FullAttachment
+import dev.mcarr.common.data.classes.FullBook
+import dev.mcarr.common.data.classes.FullChapter
 import dev.mcarr.common.data.classes.FullPage
 import dev.mcarr.common.data.classes.Page
 import dev.mcarr.common.data.classes.Pages
 import dev.mcarr.common.data.interfaces.AppDatabaseInterface
-import dev.mcarr.common.data.interfaces.BookInterface
-import dev.mcarr.common.data.interfaces.ChapterInterface
-import dev.mcarr.common.data.interfaces.FullBookInterface
-import dev.mcarr.common.data.interfaces.FullChapterInterface
 
 /**
  * Desktop version of AppDatabase.
@@ -47,40 +47,40 @@ class AppDatabase : AppDatabaseInterface {
 
     /* Bpoks */
 
-    private val books = HashMap<Int, BookInterface>()
+    private val books = HashMap<Int, Book>()
     override suspend fun getBooks() = books.entries.map { it.value }
     override suspend fun setBooks(data: Books) {
         books.clear()
         data.data.forEach { books[it.id] = it }
     }
     override suspend fun getBook(id: Int) = books[id]
-    override suspend fun setBook(data: BookInterface){ books[data.id] = data }
+    override suspend fun setBook(data: Book){ books[data.id] = data }
     override suspend fun deleteBook(id: Int) { books.remove(id) }
     override suspend fun deleteBooks() { books.clear() }
 
-    private val fullBooks = HashMap<Int, FullBookInterface>()
+    private val fullBooks = HashMap<Int, FullBook>()
     override suspend fun getBookFull(id: Int) = fullBooks[id]
-    override suspend fun setBookFull(data: FullBookInterface) = fullBooks.set(data.id, data)
+    override suspend fun setBookFull(data: FullBook) = fullBooks.set(data.id, data)
     override suspend fun deleteBookFull(id: Int) { fullBooks.remove(id) }
 
 
 
     /* Chapters */
 
-    private var chapters = HashMap<Int, ChapterInterface>()
+    private var chapters = HashMap<Int, Chapter>()
     override suspend fun getChapters() = chapters.map { it.value }
     override suspend fun setChapters(data: Chapters) {
         chapters.clear()
         data.data.forEach { chapters[it.id] = it }
     }
     override suspend fun getChapter(id: Int) = chapters[id]
-    override suspend fun setChapter(data: ChapterInterface) = chapters.set(data.id, data)
+    override suspend fun setChapter(data: Chapter) = chapters.set(data.id, data)
     override suspend fun deleteChapter(id: Int) { chapters.remove(id) }
 
-    private val fullChapters = HashMap<Int, FullChapterInterface>()
+    private val fullChapters = HashMap<Int, FullChapter>()
     override suspend fun getFullChapter(id: Int) = fullChapters[id]
     override suspend fun getFullChaptersByBookId(bookId: Int) = fullChapters.map { it.value }.filter { it.book_id == bookId }
-    override suspend fun setFullChapter(data: FullChapterInterface) = fullChapters.set(data.id, data)
+    override suspend fun setFullChapter(data: FullChapter) = fullChapters.set(data.id, data)
     override suspend fun deleteFullChapter(id: Int) { fullChapters.remove(id) }
 
 

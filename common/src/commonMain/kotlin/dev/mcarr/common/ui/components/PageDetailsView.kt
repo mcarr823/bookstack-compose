@@ -9,7 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.mcarr.common.data.interfaces.FullPageInterface
+import dev.mcarr.common.data.classes.FullPage
 import dev.mcarr.common.data.interfaces.ParentPageInterface
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -28,7 +28,7 @@ fun PageDetailsView(
     if (page != null){
         name = page.name
         slug = page.slug
-        html = if (page is FullPageInterface) page.html else ""
+        html = if (page is FullPage) page.html else ""
         val updatedAt = page.updated_at.toLocalDateTime(TimeZone.UTC)
         lastUpdated = "Last updated: %d:%02d, %d %s %04d".format(
             updatedAt.hour,

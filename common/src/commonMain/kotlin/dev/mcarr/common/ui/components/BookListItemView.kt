@@ -7,7 +7,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.mcarr.common.data.interfaces.BookInterface
+import dev.mcarr.common.data.classes.Book
 import kotlinx.datetime.*
 import kotlinx.datetime.TimeZone
 import java.time.format.TextStyle
@@ -16,8 +16,8 @@ import java.util.*
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun BookListItemView(
-    book: BookInterface,
-    onTap: (book: BookInterface) -> Unit
+    book: Book,
+    onTap: (book: Book) -> Unit
 ){
 
     val updatedAt = book.updated_at.toLocalDateTime(TimeZone.UTC)

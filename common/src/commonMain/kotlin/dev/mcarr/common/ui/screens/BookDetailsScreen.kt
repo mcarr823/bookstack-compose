@@ -9,9 +9,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import dev.mcarr.common.data.classes.BookContentFormat
+import dev.mcarr.common.data.classes.FullChapter
+import dev.mcarr.common.data.classes.FullPage
 import dev.mcarr.common.data.interfaces.AppDatabaseInterface
-import dev.mcarr.common.data.interfaces.FullChapterInterface
-import dev.mcarr.common.data.interfaces.FullPageInterface
 import dev.mcarr.common.data.interfaces.ParentBookInterface
 import dev.mcarr.common.data.interfaces.ParentChapterInterface
 import dev.mcarr.common.data.interfaces.ParentPageInterface
@@ -31,8 +31,8 @@ fun BookDetailsScreen(
 ) {
 
     var book by remember { mutableStateOf<ParentBookInterface?>(null) }
-    val chapters = remember { mutableStateListOf<FullChapterInterface>() }
-    val pages = remember { mutableStateListOf<FullPageInterface>() }
+    val chapters = remember { mutableStateListOf<FullChapter>() }
+    val pages = remember { mutableStateListOf<FullPage>() }
 
     val refresh: suspend () -> Unit = {
 

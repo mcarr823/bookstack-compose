@@ -9,7 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import dev.mcarr.common.data.interfaces.AppDatabaseInterface
-import dev.mcarr.common.data.interfaces.FullPageInterface
+import dev.mcarr.common.data.classes.FullPage
 import dev.mcarr.common.data.interfaces.ParentChapterInterface
 import dev.mcarr.common.data.interfaces.ParentPageInterface
 import dev.mcarr.common.network.ApiInterface
@@ -27,7 +27,7 @@ fun ChapterDetailsScreen(
 ){
 
     var chapter by remember { mutableStateOf<ParentChapterInterface?>(null) }
-    val pages = remember { mutableStateListOf<FullPageInterface>() }
+    val pages = remember { mutableStateListOf<FullPage>() }
     val refresh: suspend () -> Unit = {
 
         setName("Loading...")

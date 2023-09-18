@@ -1,8 +1,7 @@
 package dev.mcarr.common.data.classes
 
-import dev.mcarr.common.data.interfaces.BookInterface
 import dev.mcarr.common.data.interfaces.BookstackResponse
-import dev.mcarr.common.data.interfaces.FullBookInterface
+import dev.mcarr.common.data.interfaces.ParentBookInterface
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
@@ -20,10 +19,10 @@ data class Book(
     override val description: String,
     override val created_at: Instant,
     override val updated_at: Instant,
-    override val created_by: Int,
-    override val updated_by: Int,
-    override val owned_by: Int
-) : BookInterface
+    val created_by: Int,
+    val updated_by: Int,
+    val owned_by: Int
+) : ParentBookInterface
 
 @Serializable
 data class FullBook(
@@ -33,13 +32,13 @@ data class FullBook(
     override val description: String,
     override val created_at: Instant,
     override val updated_at: Instant,
-    override val created_by: Author,
-    override val updated_by: Author,
-    override val owned_by: Author,
-    override val contents: List<BookContent>,
-    override val tags: List<Tag>,
-    override val cover: BookCover?
-): FullBookInterface
+    val created_by: Author,
+    val updated_by: Author,
+    val owned_by: Author,
+    val contents: List<BookContent>,
+    val tags: List<Tag>,
+    val cover: BookCover?
+) : ParentBookInterface
 
 @Serializable
 data class BookContent(

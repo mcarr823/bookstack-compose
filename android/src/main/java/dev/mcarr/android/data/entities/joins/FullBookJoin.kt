@@ -9,7 +9,6 @@ import dev.mcarr.android.data.entities.BookTagEntity
 import dev.mcarr.android.data.entities.FullBookEntity
 import dev.mcarr.common.data.classes.AuthorRole
 import dev.mcarr.common.data.classes.FullBook
-import dev.mcarr.common.data.interfaces.FullBookInterface
 import kotlinx.datetime.toInstant
 
 class FullBookJoin(
@@ -41,7 +40,7 @@ class FullBookJoin(
     )
 
     companion object{
-        fun fromJson(json: FullBookInterface) =
+        fun fromJson(json: FullBook) =
             FullBookJoin(
                 entity = FullBookEntity(json)
             ).apply {

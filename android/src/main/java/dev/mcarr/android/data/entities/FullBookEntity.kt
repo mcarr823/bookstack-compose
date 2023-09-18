@@ -3,14 +3,7 @@ package dev.mcarr.android.data.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import dev.mcarr.common.data.classes.Author
-import dev.mcarr.common.data.classes.BookContent
-import dev.mcarr.common.data.classes.BookCover
 import dev.mcarr.common.data.classes.FullBook
-import dev.mcarr.common.data.classes.Tag
-import dev.mcarr.common.data.interfaces.FullBookInterface
-import kotlinx.datetime.Instant
-import kotlinx.datetime.toInstant
 
 @Entity(tableName = FullBookEntity.TABLE_NAME)
 class FullBookEntity(
@@ -29,7 +22,7 @@ class FullBookEntity(
     val updated_at: String
 ) {
 
-    constructor(json: FullBookInterface) : this(
+    constructor(json: FullBook) : this(
         id = json.id,
         name = json.name,
         slug = json.slug,

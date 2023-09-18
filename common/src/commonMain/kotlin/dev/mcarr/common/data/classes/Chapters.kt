@@ -1,8 +1,7 @@
 package dev.mcarr.common.data.classes
 
 import dev.mcarr.common.data.interfaces.BookstackResponse
-import dev.mcarr.common.data.interfaces.ChapterInterface
-import dev.mcarr.common.data.interfaces.FullChapterInterface
+import dev.mcarr.common.data.interfaces.ParentChapterInterface
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
@@ -22,9 +21,9 @@ data class Chapter(
     override val priority: Int,
     override val created_at: Instant,
     override val updated_at: Instant,
-    override val created_by: Int,
-    override val updated_by: Int
-) : ChapterInterface
+    val created_by: Int,
+    val updated_by: Int
+) : ParentChapterInterface
 
 @Serializable
 data class FullChapter(
@@ -36,12 +35,12 @@ data class FullChapter(
     override val priority: Int,
     override val created_at: Instant,
     override val updated_at: Instant,
-    override val created_by: Author,
-    override val updated_by: Author,
-    override val owned_by: Author,
-    override val tags: List<Tag>,
-    override val pages: List<Page>
-) : FullChapterInterface
+    val created_by: Author,
+    val updated_by: Author,
+    val owned_by: Author,
+    val tags: List<Tag>,
+    val pages: List<Page>
+) : ParentChapterInterface
 
 @Serializable
 data class CreateChapterRequest(

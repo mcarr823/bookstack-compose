@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import dev.mcarr.common.data.classes.Book
 import dev.mcarr.common.data.interfaces.AppDatabaseInterface
-import dev.mcarr.common.data.interfaces.BookInterface
 import dev.mcarr.common.network.ApiInterface
 import dev.mcarr.common.ui.components.BookListView
 
@@ -13,12 +13,12 @@ import dev.mcarr.common.ui.components.BookListView
 fun BookListScreen(
     db: AppDatabaseInterface,
     api: ApiInterface,
-    onTap: (book: BookInterface) -> Unit,
+    onTap: (book: Book) -> Unit,
     setName: (name: String) -> Unit,
     setRefresh: (refresh: suspend () -> Unit) -> Unit
 ) {
 
-    val books = remember { mutableStateListOf<BookInterface>() }
+    val books = remember { mutableStateListOf<Book>() }
     val refresh: suspend () -> Unit = {
         setName("Loading...")
         books.clear()

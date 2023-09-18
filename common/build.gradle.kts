@@ -1,7 +1,7 @@
 import org.jetbrains.compose.compose
 
 val coroutinesVersion = "1.7.1"
-val ktorVersion = "2.3.1"
+val ktorVersion = "2.3.4"
 val dateTimeVersion = "0.4.0"
 val nav_version = "2.0.0"
 
@@ -10,7 +10,7 @@ plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
     id("com.android.library")
-    kotlin("plugin.serialization") version "1.8.22"
+    kotlin("plugin.serialization") version "1.9.10"
     id("kotlin-parcelize")
 
 }

@@ -115,36 +115,36 @@ abstract class AppDatabase : RoomDatabase(), AppDatabaseInterface {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getBooks() = bookDao().getBooks().map { it.toDataClass() }
+    override suspend fun getBooks(): List<BookInterface> = bookDao().getBooks().map { it.toDataClass() }
     override suspend fun setBooks(data: Books) {
         val dao = bookDao()
         dao.delete()
         val list = data.data.map { BookEntity(it) }
         dao.insertBooks(list)
     }
-    override suspend fun getBook(id: Int) = bookDao().getBook(id)?.toDataClass()
-    override suspend fun setBook(data: BookInterface) = bookDao().update(data as BookEntity)
+    override suspend fun getBook(id: Int): BookInterface? = bookDao().getBook(id)?.toDataClass()
+    override suspend fun setBook(data: BookInterface) = BookEntity(data).let(bookDao()::update)
     override suspend fun deleteBook(id: Int) = bookDao().delete(id)
     override suspend fun deleteBooks() = bookDao().delete()
 
-    override suspend fun getBookFull(id: Int) = fullBookDao().getFullBook(id)?.toDataClass()
-    override suspend fun setBookFull(data: FullBookInterface) = fullBookDao().update(data as FullBookEntity)
+    override suspend fun getBookFull(id: Int): FullBookInterface? = fullBookDao().getFullBook(id)?.toDataClass()
+    override suspend fun setBookFull(data: FullBookInterface) = FullBookEntity(data).let(fullBookDao()::update)
     override suspend fun deleteBookFull(id: Int) = fullBookDao().delete(id)
 
-    override suspend fun getChapters() = chapterDao().getChapters().map { it.toDataClass() }
+    override suspend fun getChapters(): List<ChapterInterface> = chapterDao().getChapters().map { it.toDataClass() }
     override suspend fun setChapters(data: Chapters) {
         val dao = chapterDao()
         dao.delete()
         val list = data.data.map { ChapterEntity(it) }
         dao.insertChapters(list)
     }
-    override suspend fun getChapter(id: Int) = chapterDao().getChapter(id)?.toDataClass()
-    override suspend fun setChapter(data: ChapterInterface) = chapterDao().update(data as ChapterEntity)
+    override suspend fun getChapter(id: Int): ChapterInterface? = chapterDao().getChapter(id)?.toDataClass()
+    override suspend fun setChapter(data: ChapterInterface) = ChapterEntity(data).let(chapterDao()::update)
     override suspend fun deleteChapter(id: Int) = chapterDao().delete(id)
 
-    override suspend fun getFullChapter(id: Int) = fullChapterDao().getFullChapter(id)?.toDataClass()
-    override suspend fun getFullChaptersByBookId(bookId: Int) = fullChapterDao().getFullChaptersByBookId(bookId).map { it.toDataClass() }
-    override suspend fun setFullChapter(data: FullChapterInterface) = fullChapterDao().update(data as FullChapterEntity)
+    override suspend fun getFullChapter(id: Int): FullChapterInterface? = fullChapterDao().getFullChapter(id)?.toDataClass()
+    override suspend fun getFullChaptersByBookId(bookId: Int): List<FullChapterInterface> = fullChapterDao().getFullChaptersByBookId(bookId).map { it.toDataClass() }
+    override suspend fun setFullChapter(data: FullChapterInterface) = FullChapterEntity(data).let(fullChapterDao()::update)
     override suspend fun deleteFullChapter(id: Int) = fullChapterDao().delete(id)
 
     override suspend fun getPages(): List<Page> {
@@ -171,7 +171,8 @@ abstract class AppDatabase : RoomDatabase(), AppDatabaseInterface {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getFullPagesByBookId(bookId: Int) = fullPageDao().getFullPagesByBookId(bookId).map { it.toDataClass() }
+    override suspend fun getFullPagesByBookId(bookId: Int): List<FullPageInterface> =
+        fullPageDao().getFullPagesByBookId(bookId).map { it.toDataClass() }
 
     override suspend fun setFullPage(data: FullPage) {
         TODO("Not yet implemented")

@@ -19,7 +19,7 @@ group = "dev.mcarr"
 version = "1.0-SNAPSHOT"
 
 kotlin {
-    android()
+    androidTarget()
     jvm("desktop") {
         jvmToolchain(17)
     }

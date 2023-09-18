@@ -31,11 +31,11 @@ dependencies {
 
 android {
     namespace = "dev.mcarr.android"
-    compileSdkVersion(33)
+    compileSdkVersion(34)
     defaultConfig {
         applicationId = "dev.mcarr.android"
         minSdkVersion(24)
-        targetSdkVersion(33)
+        targetSdkVersion(34)
         versionCode = 1
         versionName = "1.0-SNAPSHOT"
     }

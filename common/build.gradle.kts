@@ -75,11 +75,11 @@ kotlin {
 
 android {
     namespace = "dev.mcarr.android"
-    compileSdkVersion(33)
+    compileSdkVersion(34)
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdkVersion(24)
-        targetSdkVersion(33)
+        targetSdkVersion(34)
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
